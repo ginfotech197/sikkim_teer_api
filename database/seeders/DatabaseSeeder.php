@@ -1,0 +1,130 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\UserType;
+use App\Models\DrawMaster;
+use App\Models\PlaySeries;
+use App\Models\Game;
+use App\Models\NextGameDraw;
+use App\Models\GameMessage;
+use App\Models\MatrixCombination;
+
+
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // \App\Models\User::factory(10)->create();
+        //person_types table data
+        UserType::create(['user_type_name' => 'Owner']);
+        UserType::create(['user_type_name' => 'Manager']);
+        UserType::create(['user_type_name' => 'Manager Sales']);
+        UserType::create(['user_type_name' => 'Manager Accounts']);
+        UserType::create(['user_type_name' => 'Office Staff']);
+        UserType::create(['user_type_name' => 'Worker']);
+        UserType::create(['user_type_name' => 'Developer']);
+        UserType::create(['user_type_name' => 'Customer']);
+
+        User::create(['user_name'=>'Arindam Biswas','mobile1'=>'9836444999','mobile2'=>'100','email'=>'arindam','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'user_type_id'=>1]);
+
+        // draw_masters table data
+        DrawMaster::create(['serial_number'=>1, 'draw_name'=>'', 'start_time'=>'00:00:00', 'end_time'=>'09:00:00', 'meridiem'=>'AM', 'active'=>1, 'diff'=>0]);
+        DrawMaster::create(['serial_number'=>2, 'draw_name'=>'', 'start_time'=>'09:00:00', 'end_time'=>'09:10:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>3, 'draw_name'=>'', 'start_time'=>'09:10:00', 'end_time'=>'09:20:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>4, 'draw_name'=>'', 'start_time'=>'09:20:00', 'end_time'=>'09:30:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>5, 'draw_name'=>'', 'start_time'=>'09:30:00', 'end_time'=>'09:40:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>6, 'draw_name'=>'', 'start_time'=>'09:40:00', 'end_time'=>'09:50:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>7, 'draw_name'=>'', 'start_time'=>'09:50:00', 'end_time'=>'10:00:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>8, 'draw_name'=>'', 'start_time'=>'10:00:00', 'end_time'=>'10:10:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>9, 'draw_name'=>'', 'start_time'=>'10:10:00', 'end_time'=>'10:20:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>10, 'draw_name'=>'', 'start_time'=>'10:20:00', 'end_time'=>'10:30:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>11, 'draw_name'=>'', 'start_time'=>'10:30:00', 'end_time'=>'10:40:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>12, 'draw_name'=>'', 'start_time'=>'10:40:00', 'end_time'=>'10:50:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>13, 'draw_name'=>'', 'start_time'=>'10:50:00', 'end_time'=>'11:00:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>14, 'draw_name'=>'', 'start_time'=>'11:00:00', 'end_time'=>'11:10:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>15, 'draw_name'=>'', 'start_time'=>'11:10:00', 'end_time'=>'11:20:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>16, 'draw_name'=>'', 'start_time'=>'11:20:00', 'end_time'=>'11:30:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>17, 'draw_name'=>'', 'start_time'=>'11:30:00', 'end_time'=>'11:40:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>18, 'draw_name'=>'', 'start_time'=>'11:40:00', 'end_time'=>'11:50:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>19, 'draw_name'=>'', 'start_time'=>'11:50:00', 'end_time'=>'12:00:00', 'meridiem'=>'PM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>20, 'draw_name'=>'', 'start_time'=>'12:00:00', 'end_time'=>'12:10:00', 'meridiem'=>'PM', 'active'=>0,'diff'=>0]);
+
+
+        // barcode_maxes table data
+
+
+
+        //play_series table data
+        PlaySeries::create(['series_name'=>'Jodi','game_initial' => '' ,'mrp'=> 1.00, 'winning_price'=>90, 'commision'=>5.00, 'payout'=>150,'default_payout'=>150]);
+        PlaySeries::create(['series_name'=>'Single','game_initial' => '' ,'mrp'=> 1.00, 'winning_price'=>9, 'commision'=>5.00, 'payout'=>150,'default_payout'=>150]);
+
+
+
+        //games table data
+        Game::create(['game_name'=>'2D']);
+
+        //next_game_draws table data
+        NextGameDraw::create(['next_draw_id'=>2,'last_draw_id'=>1]);   
+        
+        
+         // matrix combination
+         MatrixCombination::create(['row_num'=>0,'col_num' => 0]); MatrixCombination::create(['row_num'=>0,'col_num' => 1]); MatrixCombination::create(['row_num'=>0,'col_num' => 2]);
+         MatrixCombination::create(['row_num'=>0,'col_num' => 3]); MatrixCombination::create(['row_num'=>0,'col_num' => 4]); MatrixCombination::create(['row_num'=>0,'col_num' => 5]);
+         MatrixCombination::create(['row_num'=>0,'col_num' => 6]); MatrixCombination::create(['row_num'=>0,'col_num' => 7]); MatrixCombination::create(['row_num'=>0,'col_num' => 8]);
+         MatrixCombination::create(['row_num'=>0,'col_num' => 9]);
+ 
+         MatrixCombination::create(['row_num'=>1,'col_num' => 0]); MatrixCombination::create(['row_num'=>1,'col_num' => 1]); MatrixCombination::create(['row_num'=>1,'col_num' => 2]);
+         MatrixCombination::create(['row_num'=>1,'col_num' => 3]); MatrixCombination::create(['row_num'=>1,'col_num' => 4]); MatrixCombination::create(['row_num'=>1,'col_num' => 5]);
+         MatrixCombination::create(['row_num'=>1,'col_num' => 6]); MatrixCombination::create(['row_num'=>1,'col_num' => 7]); MatrixCombination::create(['row_num'=>1,'col_num' => 8]);
+         MatrixCombination::create(['row_num'=>1,'col_num' => 9]);
+ 
+         MatrixCombination::create(['row_num'=>2,'col_num' => 0]); MatrixCombination::create(['row_num'=>2,'col_num' => 1]); MatrixCombination::create(['row_num'=>2,'col_num' => 2]);
+         MatrixCombination::create(['row_num'=>2,'col_num' => 3]); MatrixCombination::create(['row_num'=>2,'col_num' => 4]); MatrixCombination::create(['row_num'=>2,'col_num' => 5]);
+         MatrixCombination::create(['row_num'=>2,'col_num' => 6]); MatrixCombination::create(['row_num'=>2,'col_num' => 7]); MatrixCombination::create(['row_num'=>2,'col_num' => 8]);
+         MatrixCombination::create(['row_num'=>2,'col_num' => 9]);
+ 
+         MatrixCombination::create(['row_num'=>3,'col_num' => 0]); MatrixCombination::create(['row_num'=>3,'col_num' => 1]); MatrixCombination::create(['row_num'=>3,'col_num' => 2]);
+         MatrixCombination::create(['row_num'=>3,'col_num' => 3]); MatrixCombination::create(['row_num'=>3,'col_num' => 4]); MatrixCombination::create(['row_num'=>3,'col_num' => 5]);
+         MatrixCombination::create(['row_num'=>3,'col_num' => 6]); MatrixCombination::create(['row_num'=>3,'col_num' => 7]); MatrixCombination::create(['row_num'=>3,'col_num' => 8]);
+         MatrixCombination::create(['row_num'=>3,'col_num' => 9]);
+ 
+         MatrixCombination::create(['row_num'=>4,'col_num' => 0]); MatrixCombination::create(['row_num'=>4,'col_num' => 1]); MatrixCombination::create(['row_num'=>4,'col_num' => 2]);
+         MatrixCombination::create(['row_num'=>4,'col_num' => 3]); MatrixCombination::create(['row_num'=>4,'col_num' => 4]); MatrixCombination::create(['row_num'=>4,'col_num' => 5]);
+         MatrixCombination::create(['row_num'=>4,'col_num' => 6]); MatrixCombination::create(['row_num'=>4,'col_num' => 7]); MatrixCombination::create(['row_num'=>4,'col_num' => 8]);
+         MatrixCombination::create(['row_num'=>4,'col_num' => 9]);
+ 
+         MatrixCombination::create(['row_num'=>5,'col_num' => 0]); MatrixCombination::create(['row_num'=>5,'col_num' => 1]); MatrixCombination::create(['row_num'=>5,'col_num' => 2]);
+         MatrixCombination::create(['row_num'=>5,'col_num' => 3]); MatrixCombination::create(['row_num'=>5,'col_num' => 4]); MatrixCombination::create(['row_num'=>5,'col_num' => 5]);
+         MatrixCombination::create(['row_num'=>5,'col_num' => 6]); MatrixCombination::create(['row_num'=>5,'col_num' => 7]); MatrixCombination::create(['row_num'=>5,'col_num' => 8]);
+         MatrixCombination::create(['row_num'=>5,'col_num' => 9]);
+ 
+         MatrixCombination::create(['row_num'=>6,'col_num' => 0]); MatrixCombination::create(['row_num'=>6,'col_num' => 1]); MatrixCombination::create(['row_num'=>6,'col_num' => 2]);
+         MatrixCombination::create(['row_num'=>6,'col_num' => 3]); MatrixCombination::create(['row_num'=>6,'col_num' => 4]); MatrixCombination::create(['row_num'=>6,'col_num' => 5]);
+         MatrixCombination::create(['row_num'=>6,'col_num' => 6]); MatrixCombination::create(['row_num'=>6,'col_num' => 7]); MatrixCombination::create(['row_num'=>6,'col_num' => 8]);
+         MatrixCombination::create(['row_num'=>6,'col_num' => 9]);
+ 
+         MatrixCombination::create(['row_num'=>7,'col_num' => 0]); MatrixCombination::create(['row_num'=>7,'col_num' => 1]); MatrixCombination::create(['row_num'=>7,'col_num' => 2]);
+         MatrixCombination::create(['row_num'=>7,'col_num' => 3]); MatrixCombination::create(['row_num'=>7,'col_num' => 4]); MatrixCombination::create(['row_num'=>7,'col_num' => 5]);
+         MatrixCombination::create(['row_num'=>7,'col_num' => 6]); MatrixCombination::create(['row_num'=>7,'col_num' => 7]); MatrixCombination::create(['row_num'=>7,'col_num' => 8]);
+         MatrixCombination::create(['row_num'=>7,'col_num' => 9]);
+ 
+         MatrixCombination::create(['row_num'=>8,'col_num' => 0]); MatrixCombination::create(['row_num'=>8,'col_num' => 1]); MatrixCombination::create(['row_num'=>8,'col_num' => 2]);
+         MatrixCombination::create(['row_num'=>8,'col_num' => 3]); MatrixCombination::create(['row_num'=>8,'col_num' => 4]); MatrixCombination::create(['row_num'=>8,'col_num' => 5]);
+         MatrixCombination::create(['row_num'=>8,'col_num' => 6]); MatrixCombination::create(['row_num'=>8,'col_num' => 7]); MatrixCombination::create(['row_num'=>8,'col_num' => 8]);
+         MatrixCombination::create(['row_num'=>8,'col_num' => 9]);
+ 
+         MatrixCombination::create(['row_num'=>9,'col_num' => 0]); MatrixCombination::create(['row_num'=>9,'col_num' => 1]); MatrixCombination::create(['row_num'=>9,'col_num' => 2]);
+         MatrixCombination::create(['row_num'=>9,'col_num' => 3]); MatrixCombination::create(['row_num'=>9,'col_num' => 4]); MatrixCombination::create(['row_num'=>9,'col_num' => 5]);
+         MatrixCombination::create(['row_num'=>9,'col_num' => 6]); MatrixCombination::create(['row_num'=>9,'col_num' => 7]); MatrixCombination::create(['row_num'=>9,'col_num' => 8]);
+         MatrixCombination::create(['row_num'=>9,'col_num' => 9]);
+    }
+}
