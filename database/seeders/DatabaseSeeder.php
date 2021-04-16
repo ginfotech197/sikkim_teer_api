@@ -25,16 +25,15 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         //person_types table data
-        UserType::create(['user_type_name' => 'Owner']);
-        UserType::create(['user_type_name' => 'Manager']);
-        UserType::create(['user_type_name' => 'Manager Sales']);
-        UserType::create(['user_type_name' => 'Manager Accounts']);
-        UserType::create(['user_type_name' => 'Office Staff']);
-        UserType::create(['user_type_name' => 'Worker']);
+        UserType::create(['user_type_name' => 'Admin']);
         UserType::create(['user_type_name' => 'Developer']);
-        UserType::create(['user_type_name' => 'Customer']);
+        UserType::create(['user_type_name' => 'Terminal']);
+        UserType::create(['user_type_name' => 'Stockist']);
+        
 
-        User::create(['user_name'=>'Arindam Biswas','mobile1'=>'9836444999','mobile2'=>'100','email'=>'arindam','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'user_type_id'=>1]);
+        User::create(['user_name'=>'Nirmal Roy','email'=>'admin','password'=>'12345','pin'=>'12345','default_password'=>'12345','mobile'=>'9836444999','address'=>'Barrackpore','user_type_id'=>1]);
+        User::create(['user_name'=>'Bimal das','email'=>'510501','password'=>'12345','pin'=>'12345','default_password'=>'12345','mobile'=>'9836444999','address'=>'Barrackpore','user_type_id'=>3]);
+        User::create(['user_name'=>'Ram Nandi','email'=>'st001','password'=>'12345','pin'=>'12345','default_password'=>'12345','mobile'=>'9836444999','address'=>'Barrackpore','user_type_id'=>4]);
 
         // draw_masters table data
         DrawMaster::create(['serial_number'=>1, 'draw_name'=>'', 'start_time'=>'00:00:00', 'end_time'=>'09:00:00', 'meridiem'=>'AM', 'active'=>1, 'diff'=>0]);

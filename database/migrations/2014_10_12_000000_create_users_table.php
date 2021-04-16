@@ -17,11 +17,14 @@ class CreateUsersTable extends Migration
             $table->id('id');
             $table->string('user_name')->nullable(true);
             $table->string('email')->unique();
+            $table->string('mail_id')->nullable(true);
 
             $table->string('password');
+            $table->string('pin')->nullable(true);
+            $table->string('default_password');
             $table->rememberToken();
-            $table->string('mobile1',15)->nullable(true);
-            $table->string('mobile2',15)->nullable(true);
+            $table->string('mobile',15)->nullable(true);
+            $table->string('address',50)->nullable(true);
 
             $table->bigInteger('user_type_id')->unsigned()->default(2);
             $table ->foreign('user_type_id')->references('id')->on('user_types');
