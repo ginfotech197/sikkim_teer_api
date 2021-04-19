@@ -37,8 +37,9 @@ class UserController extends Controller
 
     function login(Request $request)
     {
-        $user= User::where('email', $request->email)->first();
-        // print_r($data);
+        $user= User::where('email', $request->userId)->first();
+//        print_r($user);exit;
+//         echo $request->userId;exit;
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json(['success'=>0,'data'=>null, 'message'=>'Credential does not matched'], 200,[],JSON_NUMERIC_CHECK);
         }
