@@ -32,6 +32,12 @@ class User extends Authenticatable
             $this->attributes['password'] = bcrypt($password);
         }
     }
+
+    public function StockistToTerminal()
+    {
+        return $this->hasMany('App\Models\StockistToTerminal','terminal_id');
+    }
+
     public function user_type(){
         return $this->belongsTo('App\Models\UserType', 'user_type_id');
     }

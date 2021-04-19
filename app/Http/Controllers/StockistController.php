@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DrawMaster;
+use App\Models\Stockist;
 use Illuminate\Http\Request;
 
-class DrawMasterController extends Controller
+class StockistController extends Controller
 {
-    public function getActiveDrawTime(){
-        $currentDraw = DrawMaster::where('active', 1)->first();;
-        echo json_encode($currentDraw,JSON_NUMERIC_CHECK);
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
     }
 
     /**
@@ -36,10 +41,10 @@ class DrawMasterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\DrawMaster  $drawMaster
+     * @param  \App\Models\Stockist  $stockist
      * @return \Illuminate\Http\Response
      */
-    public function show(DrawMaster $drawMaster)
+    public function show(Stockist $stockist)
     {
         //
     }
@@ -47,10 +52,10 @@ class DrawMasterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\DrawMaster  $drawMaster
+     * @param  \App\Models\Stockist  $stockist
      * @return \Illuminate\Http\Response
      */
-    public function edit(DrawMaster $drawMaster)
+    public function edit(Stockist $stockist)
     {
         //
     }
@@ -59,10 +64,10 @@ class DrawMasterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DrawMaster  $drawMaster
+     * @param  \App\Models\Stockist  $stockist
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DrawMaster $drawMaster)
+    public function update(Request $request, Stockist $stockist)
     {
         //
     }
@@ -70,10 +75,10 @@ class DrawMasterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\DrawMaster  $drawMaster
+     * @param  \App\Models\Stockist  $stockist
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DrawMaster $drawMaster)
+    public function destroy(Stockist $stockist)
     {
         //
     }

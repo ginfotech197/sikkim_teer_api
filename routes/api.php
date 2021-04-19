@@ -17,6 +17,9 @@ use App\Http\Controllers\SaleMasterController;
 use App\Http\Controllers\SaleController;
 use App\Models\TransactionMaster;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\PlayMasterController;
+use App\Http\Controllers\DrawMasterController;
+use App\Http\Controllers\PlaySeriesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,7 +44,13 @@ Route::post("register",[UserController::class,'register']);
 Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
     Route::get("user",[UserController::class,'getCurrentUser']);
-    Route::get("logout",[UserController::class,'logout']);
+    Route::post("logout",[UserController::class,'logout']);
+
+
+    Route::post("saveGameInputDetails",[PlayMasterController::class,'saveGameInputDetails']);
+    Route::get("getServerTime",[UserController::class,'getCurrentTimestamp']);
+    Route::get("getActiveDraw",[DrawMasterController::class,'getActiveDrawTime']);
+    Route::get("getPlaySeries",[PlaySeriesController::class,'getPlaySeries']);
 
     //get all users
     Route::get("users",[UserController::class,'getAllUsers']);

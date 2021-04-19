@@ -13,13 +13,13 @@ class CreateAllProceduresAndFunctions extends Migration
      */
     public function up()
     {
-        DB::unprepared('DROP PROCEDURE IF EXISTS getUsers;
-                        CREATE PROCEDURE getUsers()
-                        BEGIN
-                            SELECT * FROM users;
-                        END'
-        );
-        
+//        DB::unprepared('DROP PROCEDURE IF EXISTS getUsers;
+//                        CREATE PROCEDURE getUsers()
+//                        BEGIN
+//                            SELECT * FROM users;
+//                        END'
+//        );
+
     }
 
     public function down()

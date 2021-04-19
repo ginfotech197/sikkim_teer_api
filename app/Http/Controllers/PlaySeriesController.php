@@ -7,14 +7,9 @@ use Illuminate\Http\Request;
 
 class PlaySeriesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function getPlaySeries(){
+        $allPlaySeries = PlaySeries::get();  //single
+        echo json_encode($allPlaySeries,JSON_NUMERIC_CHECK);
     }
 
     /**

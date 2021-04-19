@@ -15,6 +15,11 @@ class CreateBarcodeMaxesTable extends Migration
     {
         Schema::create('barcode_maxes', function (Blueprint $table) {
             $table->id();
+            $table->string('subject_name',50)->unique()->nullable(false);
+            $table->integer('current_value')->nullable(false);
+            $table->string('prefix',10)->nullable(true);
+            $table->string('suffix',10)->nullable(true);
+            $table->smallInteger('financial_year');
             $table->timestamps();
         });
     }
