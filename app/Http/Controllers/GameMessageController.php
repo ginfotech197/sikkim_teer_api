@@ -4,27 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Models\GameMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GameMessageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function getSiteNotification(){
+        $message = GameMessage::orderBy('id', 'DESC')->take(1)->first();
+        return json_encode($message);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function addNewMessage(request $request){
+        $requestedData = (object)($request->json()->all());
+        $message = $requestedData->msg;
+
+        try
+        {
+            $gameMessageObj = new GameMessage();
+            $currentMessage = $gameMessageObj::first();
+
+            if(!empty($currentMessage)){
+                $lastId = $currentMessage->id;
+                $gameMessageObj::where('id',$lastId)->update(['message'=>$message]);
+            }else{
+                $gameMessageObj->message = $message;
+                $gameMessageObj->save();
+            }
+            DB::commit();
+        }
+
+        catch (Exception $e)
+        {
+            DB::rollBack();
+            return response()->json(array('success' => 0, 'message' => $e->getMessage().'<br>File:-'.$e->getFile().'<br>Line:-'.$e->getLine()),401);
+        }
+        return response()->json(array('success' => 1, 'message' => 'Successfully recorded'),200);
     }
 
     /**

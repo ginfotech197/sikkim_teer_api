@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\StockistToTerminal;
 
 class UserController extends Controller
 {
@@ -69,6 +70,32 @@ class UserController extends Controller
 
     }
 
+    public function getLoggedInTerminalBalance(request $request){
+        $requestedData = (object)($request->json()->all());
+        $terminalId = $requestedData->terminal_id;
+        $StockistToTerminal = StockistToTerminal:: select('terminal_id','stockist_id','current_balance')->where('terminal_id',$terminalId)->first();
+        return $StockistToTerminal;
+    }
+
+    public function resetAdminPassword(request $request){
+        $user_data=(object)($request->json()->all());
+
+        $userId = $user_data->userId;
+        $userPsw = $user_data->psw;
+
+        $updateInfo = User::where('id',$userId)
+            ->where('password', $user_data->old_psw)
+            ->update(['user_password'=>$userPsw]);
+
+        if($updateInfo==1){
+            return response()->json(array('success' => 1, 'message' => 'Successfully recorded'),200);
+        }else{
+            return response()->json(array('success' => 0, 'message' => 'Something went wrong'),200);
+        }
+
+    }
+
+
     function getAllUsers(Request $request){
         return User::get();
     }
@@ -76,5 +103,14 @@ class UserController extends Controller
         $result = $request->user()->currentAccessToken()->delete();
         return $result;
 //        return  response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function forceLogoutToTerminal(request $request){
+//        $user_data=(object)($request->json()->all());
+//        $userId = $user_data->id;
+//        //updating data
+//        $person=User::where(['id'=> $userId])->update(['is_loggedin'=>0,'uuid' => NULL]);
+        $result = $request->user()->currentAccessToken()->delete();
+        return $result;
     }
 }

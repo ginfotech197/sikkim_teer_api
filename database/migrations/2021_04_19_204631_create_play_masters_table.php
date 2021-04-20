@@ -23,6 +23,8 @@ class CreatePlayMastersTable extends Migration
             $table->bigInteger('terminal_id')->unsigned()->nullable(false);
             $table ->foreign('terminal_id')->references('id')->on('users');
 
+            $table->string('slip_no');
+
 
             $table->bigInteger('draw_master_id')->unsigned()->nullable(false);
             $table ->foreign('draw_master_id')->references('id')->on('draw_masters');

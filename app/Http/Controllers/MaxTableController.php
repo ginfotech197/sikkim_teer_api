@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NextGameDraw;
+use App\Models\MaxTable;
 use Illuminate\Http\Request;
 
-class NextGameDrawController extends Controller
+class MaxTableController extends Controller
 {
-    function getIncreasedValue(){
-        $nextDrawId = NextGameDraw::select('next_draw_id')->first();
-        return $nextDrawId;
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
     }
 
     /**
@@ -36,10 +41,10 @@ class NextGameDrawController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\NextGameDraw  $nextGameDraw
+     * @param  \App\Models\MaxTable  $maxTable
      * @return \Illuminate\Http\Response
      */
-    public function show(NextGameDraw $nextGameDraw)
+    public function show(MaxTable $maxTable)
     {
         //
     }
@@ -47,10 +52,10 @@ class NextGameDrawController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\NextGameDraw  $nextGameDraw
+     * @param  \App\Models\MaxTable  $maxTable
      * @return \Illuminate\Http\Response
      */
-    public function edit(NextGameDraw $nextGameDraw)
+    public function edit(MaxTable $maxTable)
     {
         //
     }
@@ -59,10 +64,10 @@ class NextGameDrawController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\NextGameDraw  $nextGameDraw
+     * @param  \App\Models\MaxTable  $maxTable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NextGameDraw $nextGameDraw)
+    public function update(Request $request, MaxTable $maxTable)
     {
         //
     }
@@ -70,10 +75,10 @@ class NextGameDrawController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\NextGameDraw  $nextGameDraw
+     * @param  \App\Models\MaxTable  $maxTable
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NextGameDraw $nextGameDraw)
+    public function destroy(MaxTable $maxTable)
     {
         //
     }
