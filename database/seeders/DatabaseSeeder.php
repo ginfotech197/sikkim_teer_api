@@ -38,26 +38,9 @@ class DatabaseSeeder extends Seeder
         User::create(['user_name'=>'Ram Nandi','email'=>'st001','password'=>'12345','pin'=>'12345','default_password'=>'12345','mobile'=>'9836444999','address'=>'Barrackpore','user_type_id'=>4]);
 
         // draw_masters table data
-        DrawMaster::create(['serial_number'=>1, 'draw_name'=>'', 'start_time'=>'00:00:00', 'end_time'=>'09:00:00', 'meridiem'=>'AM', 'active'=>1, 'diff'=>0]);
-        DrawMaster::create(['serial_number'=>2, 'draw_name'=>'', 'start_time'=>'09:00:00', 'end_time'=>'09:10:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>3, 'draw_name'=>'', 'start_time'=>'09:10:00', 'end_time'=>'09:20:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>4, 'draw_name'=>'', 'start_time'=>'09:20:00', 'end_time'=>'09:30:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>5, 'draw_name'=>'', 'start_time'=>'09:30:00', 'end_time'=>'09:40:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>6, 'draw_name'=>'', 'start_time'=>'09:40:00', 'end_time'=>'09:50:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>7, 'draw_name'=>'', 'start_time'=>'09:50:00', 'end_time'=>'10:00:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>8, 'draw_name'=>'', 'start_time'=>'10:00:00', 'end_time'=>'10:10:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>9, 'draw_name'=>'', 'start_time'=>'10:10:00', 'end_time'=>'10:20:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>10, 'draw_name'=>'', 'start_time'=>'10:20:00', 'end_time'=>'10:30:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>11, 'draw_name'=>'', 'start_time'=>'10:30:00', 'end_time'=>'10:40:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>12, 'draw_name'=>'', 'start_time'=>'10:40:00', 'end_time'=>'10:50:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>13, 'draw_name'=>'', 'start_time'=>'10:50:00', 'end_time'=>'11:00:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>14, 'draw_name'=>'', 'start_time'=>'11:00:00', 'end_time'=>'11:10:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>15, 'draw_name'=>'', 'start_time'=>'11:10:00', 'end_time'=>'11:20:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>16, 'draw_name'=>'', 'start_time'=>'11:20:00', 'end_time'=>'11:30:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>17, 'draw_name'=>'', 'start_time'=>'11:30:00', 'end_time'=>'11:40:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>18, 'draw_name'=>'', 'start_time'=>'11:40:00', 'end_time'=>'11:50:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>19, 'draw_name'=>'', 'start_time'=>'11:50:00', 'end_time'=>'12:00:00', 'meridiem'=>'PM', 'active'=>0,'diff'=>0]);
-        DrawMaster::create(['serial_number'=>20, 'draw_name'=>'', 'start_time'=>'12:00:00', 'end_time'=>'12:10:00', 'meridiem'=>'PM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>1, 'draw_name'=>'F/R', 'start_time'=>'00:00:00', 'end_time'=>'09:00:00', 'meridiem'=>'AM', 'active'=>1, 'diff'=>0]);
+        DrawMaster::create(['serial_number'=>2, 'draw_name'=>'S/R', 'start_time'=>'09:00:00', 'end_time'=>'09:10:00', 'meridiem'=>'AM', 'active'=>0,'diff'=>0]);
+        
 
         Stockist::create(['stockist_unique_id'=>'ST-0001','stockist_name' => 'test stockist' ,'user_id'=> 510501, 'user_password'=>12345, 'serial_number'=>1, 'current_balance'=>1000,'user_type_id'=>3]);
 
@@ -70,7 +53,6 @@ class DatabaseSeeder extends Seeder
 
         //play_series table data
         PlaySeries::create(['series_name'=>'Jodi','game_initial' => '' ,'mrp'=> 1.00, 'winning_price'=>90, 'commision'=>5.00, 'payout'=>150,'default_payout'=>150]);
-        PlaySeries::create(['series_name'=>'Single','game_initial' => '' ,'mrp'=> 1.00, 'winning_price'=>9, 'commision'=>5.00, 'payout'=>150,'default_payout'=>150]);
 
 
 
