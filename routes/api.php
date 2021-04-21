@@ -38,7 +38,7 @@ Route::post("register",[UserController::class,'register']);
 
 Route::post("resetAdminPassword",[UserController::class,'resetAdminPassword']);
 //Route::post("checkAuthenticatedUser",[UserController::class,'checkAuthenticatedUser']);
-Route::post("logout",[UserController::class,'logout']);
+//Route::post("logout",[UserController::class,'logout']);
 Route::get("getServerTime",[UserController::class,'getCurrentTimestamp']);
 Route::get("getPlaySeries",[PlaySeriesController::class,'getPlaySeries']);
 Route::get("person/{id}/getBalance",[StockistToTerminalController::class,'getTerminalBalance']);
@@ -61,7 +61,7 @@ Route::patch("updateCancelable",[PlayMasterController::class,'updateCancelable']
 Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
     Route::get("user",[UserController::class,'getCurrentUser']);
-//    Route::post("logout",[UserController::class,'logout']);
+    Route::post("logout",[UserController::class,'logout']);
 
 
     Route::post("saveGameInputDetails",[PlayMasterController::class,'saveGameInputDetails']);

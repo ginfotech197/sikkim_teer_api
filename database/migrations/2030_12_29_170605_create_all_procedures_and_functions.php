@@ -16,10 +16,10 @@ class CreateAllProceduresAndFunctions extends Migration
     {
         DB::unprepared('drop VIEW IF EXISTS digit_table;
               CREATE VIEW digit_table AS
-              SELECT user_id,agent_name,terminal_id,stockist_user_id,commision,winning_price,winning_bonous_percent,mrp,ticket_taken_time,record_time FROM
+              SELECT email,agent_name,terminal_id,stockist_user_id,commision,winning_price,winning_bonous_percent,mrp,ticket_taken_time,record_time FROM
               (
             select
-            users.user_id as user_id
+            users.email as email
             ,users.user_name as agent_name
             ,play_masters.terminal_id as terminal_id
             ,stockists.user_id as stockist_user_id
@@ -48,7 +48,7 @@ class CreateAllProceduresAndFunctions extends Migration
                 FROM
                     (
                     SELECT
-                        COALESCE(user_id, \'Grand Total\') AS user_id,
+                        COALESCE(email, \'Grand Total\') AS email,
                         MAX(agent_name) AS agent_name,
                         COALESCE(terminal_id) AS terminal_id,
                         MAX(stockist_user_id) AS stockist_user_id,
@@ -63,7 +63,7 @@ class CreateAllProceduresAndFunctions extends Migration
                         (
                         SELECT
                             \'digit\' AS game_name,
-                            user_id,
+                            email,
                             agent_name,
                             MAX(stockist_user_id) AS stockist_user_id,
                             MAX(winning_bonous_percent) AS winning_bonous_percent,
@@ -86,10 +86,10 @@ class CreateAllProceduresAndFunctions extends Migration
                                 record_time
                         ) AS table1
                     GROUP BY
-                        terminal_id,user_id,ticket_taken_time
+                        terminal_id,email,ticket_taken_time
                     ) AS table2
                 GROUP BY
-                    terminal_id,winning_bonous_percent,user_id WITH ROLLUP
+                    terminal_id,winning_bonous_percent,email WITH ROLLUP
                 ) AS table3
             ORDER BY
                 terminal_id;

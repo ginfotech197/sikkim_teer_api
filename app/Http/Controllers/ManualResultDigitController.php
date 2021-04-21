@@ -25,7 +25,7 @@ class ManualResultDigitController extends Controller
         try
         {
             $manualResultDigit = new ManualResultDigit();
-            $manualResultDigit->play_series_id = 2;     //2 = single but the result is  same for jodi and single
+            $manualResultDigit->play_series_id = 1;     //1 = single but the result is  same for jodi and single
             $manualResultDigit->draw_master_id = $drawMasterId;
             $manualResultDigit->result = $result;
             $manualResultDigit->game_date = $gameDate;
