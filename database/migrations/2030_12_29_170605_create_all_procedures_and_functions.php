@@ -263,7 +263,7 @@ class CreateAllProceduresAndFunctions extends Migration
               /*end of insert into result master table*/
               /*insert into result details table*/
               select LAST_INSERT_ID() into last_inserted_id;
-              set @i=2;
+              set @i=1;
               SELECT payout into payoutValue FROM `play_series` where id=@i;
               set @cell_address=get_2d_winning_cell(draw_id, @i ,date_format(curdate(), "%Y-%m-%d"));
               set @r=floor(@cell_address / 10);
