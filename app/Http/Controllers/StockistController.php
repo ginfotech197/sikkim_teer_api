@@ -10,13 +10,13 @@ use App\Models\MaxTable;
 class StockistController extends Controller
 {
     public function getAllStockists(){
-        $allStockists = Stockist::select('id','stockist_unique_id','stockist_name','user_id','user_password','serial_number','current_balance','person_category_id')
+        $allStockists = Stockist::select('id','stockist_unique_id','stockist_name','user_id','user_password','serial_number','current_balance','user_type_id')
             ->where('inforce',1)->get();
         return json_encode($allStockists,JSON_NUMERIC_CHECK);
     }
 
     public function selectNextStockistId(){
-        $stockist = DB::select(DB::raw("select max(current_value+1) as current_value from max_tables where person_category_id=4"));
+        $stockist = DB::select(DB::raw("select max(current_value+1) as current_value from max_tables where user_type_id=4"));
         $stockist = $stockist[0];
 
         if(isset($stockist) && !empty($stockist->current_value)){

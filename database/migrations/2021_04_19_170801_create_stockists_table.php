@@ -25,6 +25,7 @@ class CreateStockistsTable extends Migration
 
             $table->bigInteger('user_type_id')->unsigned();
             $table ->foreign('user_type_id')->references('id')->on('user_types');
+            $table->tinyInteger('inforce')->default(1);
             $table->timestamps();
         });
     }

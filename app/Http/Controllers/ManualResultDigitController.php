@@ -20,7 +20,7 @@ class ManualResultDigitController extends Controller
         $requestedData = (object)($request->json()->all());
         $drawMasterId = $requestedData->master['draw_master_id'];
         $gameDate = $currentDate = Carbon::now()->format('Y-m-d');
-        $result = ($requestedData->master['aandar']*10)+$requestedData->master['bahar'];
+        $result = $requestedData->master['aandar'];
 
         try
         {

@@ -17,7 +17,7 @@ class StockistToTerminalController extends Controller
     public function getAllTerminals(){
         $allTerminals = StockistToTerminal::
         select('stockist_to_terminals.terminal_id','stockist_to_terminals.stockist_id','stockists.stockist_name',
-            'stockists.user_id as stockist_user_id','people.people_name','people.user_id','people.user_password',
+            'stockists.user_id as stockist_user_id','users.user_name','users.email','users.pin',
             'stockist_to_terminals.current_balance as terminal_current_balance','stockists.current_balance as stockist_current_balance')
             ->join('stockists', 'stockist_to_terminals.stockist_id', '=', 'stockists.id')
             ->join('users', 'stockist_to_terminals.terminal_id', '=', 'users.id')
@@ -106,7 +106,7 @@ class StockistToTerminalController extends Controller
 
     public function getLoggedInTerminals(){
         $allTerminals = User::select('id','user_name','email')
-            ->where('person_category_id','=',3)
+            ->where('user_type_id','=',3)
 //            ->whereNotNull('uuid')
 //            ->where('uuid','NOT LIKE','')
             ->get();
