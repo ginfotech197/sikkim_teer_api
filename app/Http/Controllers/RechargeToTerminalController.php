@@ -65,7 +65,7 @@ class RechargeToTerminalController extends Controller
         $startDate = $requestedData->start_date;
         $reportData = DB::select("select *
         ,if(is_claimed=1,'Yes','No') as claimed
-        from (select max(user_id) as user_id,
+        from (select max(email) as email,
                     max(draw_time) as draw_time
                     ,max(ticket_taken_time) as ticket_taken_time
                     ,barcode
@@ -82,7 +82,7 @@ class RechargeToTerminalController extends Controller
                     play_masters.barcode_number as barcode
                     ,play_masters.id as play_master_id
                     , max(play_masters.terminal_id) as terminal_id
-                    ,max(people.user_id) as user_id
+                    ,max(users.email) as email
                     , play_details.play_series_id
                     ,max(play_series.mrp) as mrp
                     , max(play_masters.draw_master_id) as draw_master_id
@@ -98,7 +98,7 @@ class RechargeToTerminalController extends Controller
                     inner join play_masters ON play_masters.id = play_details.play_master_id
                     inner join draw_masters ON draw_masters.id = play_masters.draw_master_id
                     inner join play_series ON play_series.id = play_details.play_series_id
-                    inner join people on people.id = play_masters.terminal_id
+                    inner join users on users.id = play_masters.terminal_id
                     where date(play_masters.created_at)=?
                     group by play_details.play_master_id,play_masters.id
                     ,play_masters.barcode_number,play_details.play_series_id
@@ -181,7 +181,7 @@ class RechargeToTerminalController extends Controller
         // $reportData = DB::select('call digit_barcode_report_from_terminal(?,?,?)',array($terminalId,$startDate,$endDate));
         $reportData = DB::select("select *
         ,if(is_claimed=1,'Yes','No') as claimed
-        from (select max(user_id) as user_id,
+        from (select max(email) as email,
                     max(draw_time) as draw_time
                     ,max(ticket_taken_time) as ticket_taken_time
                     ,barcode,is_cancelled,is_cancelable
@@ -199,7 +199,7 @@ class RechargeToTerminalController extends Controller
                     play_masters.is_cancelable
                     ,play_masters.id as play_master_id
                     , max(play_masters.terminal_id) as terminal_id
-                    ,max(people.user_id) as user_id
+                    ,max(users.email) as email
                     , play_details.play_series_id
                     ,max(play_series.mrp) as mrp
                     , max(play_masters.draw_master_id) as draw_master_id
@@ -215,7 +215,7 @@ class RechargeToTerminalController extends Controller
                     inner join play_masters ON play_masters.id = play_details.play_master_id
                     inner join draw_masters ON draw_masters.id = play_masters.draw_master_id
                     inner join play_series ON play_series.id = play_details.play_series_id
-                    inner join people on people.id = play_masters.terminal_id
+                    inner join users on users.id = play_masters.terminal_id
                     where date(play_masters.created_at) BETWEEN ? AND ? AND play_masters.terminal_id=?
                     group by play_details.play_master_id,play_masters.id
                     ,play_masters.barcode_number,play_details.play_series_id

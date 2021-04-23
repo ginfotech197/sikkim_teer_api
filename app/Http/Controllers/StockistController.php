@@ -34,7 +34,7 @@ class StockistController extends Controller
         $financial_year = $objCentralFunctionCtrl->get_financial_year();
         try
         {
-            DB::insert("insert into max_tables (subject_name,person_category_id,current_value, prefix, financial_year)
+            DB::insert("insert into max_tables (subject_name,user_type_id,current_value, prefix, financial_year)
             values('stockist',4,1,'S',?)
             on duplicate key UPDATE id=last_insert_id(id), current_value=current_value+1", [$financial_year]);
             $lastInsertId = DB::getPdo()->lastInsertId();
@@ -45,7 +45,7 @@ class StockistController extends Controller
             $stockistObj->user_id = $requestedData->stockist['user_id'];
             $stockistObj->user_password = $requestedData->stockist['user_password'];
             $stockistObj->serial_number = $max_table_data->current_value;
-            $stockistObj->person_category_id = 4;
+            $stockistObj->user_type_id = 4;
             $stockistObj->save();
             $lastStockistId = DB::getPdo()->lastInsertId();
             DB::commit();
