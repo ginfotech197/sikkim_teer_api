@@ -17,7 +17,7 @@ class StockistToTerminalController extends Controller
     public function getAllTerminals(){
         $allTerminals = StockistToTerminal::
         select('stockist_to_terminals.terminal_id','stockist_to_terminals.stockist_id','stockists.stockist_name',
-            'stockists.user_id as stockist_user_id','users.user_name','users.email','users.pin',
+            'stockists.user_id as stockist_user_id','users.user_name','users.email as user_id','users.pin',
             'stockist_to_terminals.current_balance as terminal_current_balance','stockists.current_balance as stockist_current_balance')
             ->join('stockists', 'stockist_to_terminals.stockist_id', '=', 'stockists.id')
             ->join('users', 'stockist_to_terminals.terminal_id', '=', 'users.id')
