@@ -178,13 +178,12 @@ class RechargeToTerminalController extends Controller
         $startDate = $requestedData->startDate;
         $endDate = $requestedData->endDate;
 
-        // $reportData = DB::select('call digit_barcode_report_from_terminal(?,?,?)',array($terminalId,$startDate,$endDate));
         $reportData = DB::select("select *
         ,if(is_claimed=1,'Yes','No') as claimed
         from (select max(email) as email,
                     max(draw_time) as draw_time
                     ,max(ticket_taken_time) as ticket_taken_time
-                    ,barcode,is_cancelled,is_cancelable
+                    ,barcode,slip_no,is_cancelled,is_cancelable
                     ,max(play_master_id) as play_master_id
                     ,max(terminal_id) as terminal_id
                     ,max(draw_master_id) as draw_master_id
@@ -195,6 +194,7 @@ class RechargeToTerminalController extends Controller
                     ,max(is_claimed) as is_claimed
                     from (select
                     play_masters.barcode_number as barcode,
+                    max(play_masters.slip_no) as slip_no,
                     play_masters.is_cancelled,
                     play_masters.is_cancelable
                     ,play_masters.id as play_master_id
@@ -216,12 +216,12 @@ class RechargeToTerminalController extends Controller
                     inner join draw_masters ON draw_masters.id = play_masters.draw_master_id
                     inner join play_series ON play_series.id = play_details.play_series_id
                     inner join users on users.id = play_masters.terminal_id
-                    where date(play_masters.created_at) BETWEEN ? AND ? AND play_masters.terminal_id=?
+                    where date(play_masters.created_at) BETWEEN ? AND ? AND play_masters.terminal_id= ?
                     group by play_details.play_master_id,play_masters.id
                     ,play_masters.barcode_number,play_details.play_series_id
                     ,play_details.row_num,play_details.col_num,play_masters.is_cancelled,
                     play_masters.is_cancelable) as table1
-                    group by barcode,is_cancelled,is_cancelable order by draw_master_id desc,ticket_taken_time desc) as table2",[$startDate,$endDate,$terminalId]);
+                    group by barcode,slip_no,is_cancelled,is_cancelable order by draw_master_id desc,ticket_taken_time desc) as table2",[$startDate,$endDate,$terminalId]);
         return $reportData;
     }
 
