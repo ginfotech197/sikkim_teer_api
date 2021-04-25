@@ -44,6 +44,12 @@ class PlayMasterController extends Controller
                 $playMaster->draw_master_id = $drawId;
                 $playMaster->slip_no = $allRequestedData->slip_no;
                 $playMaster->save();
+
+                StockistToTerminal::where('terminal_id', $terminalId)
+                    ->update(array(
+                        'current_balance' => DB::raw( 'current_balance -'.$allRequestedData->purchasedTicket)
+                    ) );
+
                 $lastInsertedPlayMasterId = $playMaster->id;
                 $inputDetails = $allRequestedData->playDetails;
                 $playDetails = new PlayDetail();
@@ -54,10 +60,10 @@ class PlayMasterController extends Controller
                 $playDetails->insert($inputDetails);
             }
 
-            StockistToTerminal::where('terminal_id', $terminalId)
-                ->update(array(
-                    'current_balance' => DB::raw( 'current_balance -'.$allRequestedData->purchasedTicket)
-                ) );
+//            StockistToTerminal::where('terminal_id', $terminalId)
+//                ->update(array(
+//                    'current_balance' => DB::raw( 'current_balance -'.$allRequestedData->purchasedTicket)
+//                ) );
 
             $currentBalance = StockistToTerminal::select('current_balance')->where('terminal_id', $terminalId)->first();
             DB::commit();

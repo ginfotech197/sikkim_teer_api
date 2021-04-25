@@ -16,6 +16,8 @@ class CreateRechargeToStockistsTable extends Migration
         Schema::create('recharge_to_stockists', function (Blueprint $table) {
             $table->id();
 
+            $table->double('amount')->default(0);
+
             $table->bigInteger('recharge_master')->unsigned();
             $table ->foreign('recharge_master')->references('id')->on('users');
 
