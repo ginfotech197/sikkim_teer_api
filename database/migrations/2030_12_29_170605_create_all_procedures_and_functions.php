@@ -273,11 +273,13 @@ class CreateAllProceduresAndFunctions extends Migration
                 ,result_row
                 ,result_col
                 ,payout
+                ,play_series_id
               ) VALUES (
                  last_inserted_id
                 ,@r
                 ,@c
                 ,payoutValue
+                ,@i
               );
                 IF _rollback THEN
                     ROLLBACK;

@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
         // draw_masters table data
         DrawMaster::create(['serial_number'=>1, 'draw_name'=>'F/R', 'start_time'=>'00:00:00', 'end_time'=>'05:00:00', 'meridiem'=>'PM', 'active'=>1, 'diff'=>0]);
-        DrawMaster::create(['serial_number'=>2, 'draw_name'=>'S/R', 'start_time'=>'05:00:00', 'end_time'=>'06:10:00', 'meridiem'=>'PM', 'active'=>0,'diff'=>0]);
+        DrawMaster::create(['serial_number'=>2, 'draw_name'=>'S/R', 'start_time'=>'05:00:00', 'end_time'=>'06:00:00', 'meridiem'=>'PM', 'active'=>0,'diff'=>0]);
         
 
         Stockist::create(['stockist_unique_id'=>'ST-0001','stockist_name' => 'test stockist' ,'user_id'=> 510501, 'user_password'=>12345, 'serial_number'=>1, 'current_balance'=>1000,'user_type_id'=>3]);
