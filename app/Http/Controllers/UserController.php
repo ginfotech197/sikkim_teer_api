@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\StockistToTerminal;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class UserController extends Controller
 {
@@ -106,11 +107,15 @@ class UserController extends Controller
     }
 
     public function forceLogoutToTerminal(request $request){
-//        $user_data=(object)($request->json()->all());
-//        $userId = $user_data->id;
+        $user_data=(object)($request->json()->all());
+        $userId = $user_data->id;
+        $tokenId = $user_data->token_id;
+
 //        //updating data
 //        $person=User::where(['id'=> $userId])->update(['is_loggedin'=>0,'uuid' => NULL]);
-        $result = $request->user()->currentAccessToken()->delete();
+
+//        $result = $request->user()->currentAccessToken()->delete();
+        $result = $request->user()->token($tokenId)->revoke();
         return $result;
     }
 }

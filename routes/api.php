@@ -34,6 +34,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post("login",[UserController::class,'login']);
 
+Route::post("logout",[UserController::class,'logout']);
+
 Route::post("register",[UserController::class,'register']);
 
 Route::post("resetAdminPassword",[UserController::class,'resetAdminPassword']);
@@ -52,7 +54,6 @@ Route::get("getPreviousResult",[ResultDetailsController::class,'getPreviousDrawR
 Route::get("getTodayResult",[ResultDetailsController::class,'getTodayResult']);
 Route::post("getResultsByDate",[ResultDetailsController::class,'getResultByDate']);
 Route::get("getAdvanceDraws",[DrawMasterController::class,'getAdvanceDrawTimes']);
-
 // CancelTicket
 Route::patch("cancelTicket",[PlayMasterController::class,'cancelTicket']);
 Route::patch("updateCancelable",[PlayMasterController::class,'updateCancelable']);
@@ -61,7 +62,7 @@ Route::patch("updateCancelable",[PlayMasterController::class,'updateCancelable']
 Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
     Route::get("user",[UserController::class,'getCurrentUser']);
-    Route::post("logout",[UserController::class,'logout']);
+//    Route::post("logout",[UserController::class,'logout']);
 
 
     Route::post("saveGameInputDetails",[PlayMasterController::class,'saveGameInputDetails']);
