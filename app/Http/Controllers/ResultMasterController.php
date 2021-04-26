@@ -52,16 +52,46 @@ class ResultMasterController extends Controller
         return response()->json(array('success' => 1, 'message' => 'Successfully recorded'),200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function getPreviousResult(){
+//        $data = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=1,(result_details.result_row*10 + result_details.result_col),0) as fr_value,
+//            if(result_masters.draw_master_id=2,(result_details.result_row*10 + result_details.result_col),0) as sr_value from result_masters
+//            inner join result_details on result_details.result_master_id = result_masters.id');
+
+        $fr_value = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=1,(result_details.result_row*10 + result_details.result_col),0) as fr_value from result_masters
+            inner join result_details on result_details.result_master_id = result_masters.id
+            where result_masters.draw_master_id = 1');
+
+        $sr_value = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=2,(result_details.result_row*10 + result_details.result_col),0) as sr_value from result_masters
+            inner join result_details on result_details.result_master_id = result_masters.id
+            where result_masters.draw_master_id = 2');
+
+//        $finalArray = [];
+//        foreach ($fr_value as $fr_val){
+//            $testArray =(object)[];
+//            foreach ($sr_value as $sr_val){
+//                if($fr_val->game_date === $sr_val->game_date){
+//                    $testArray->game_date = $fr_val->game_date;
+//                    $testArray->fr_value = $fr_val->fr_value | 0;
+//                    $testArray->sr_value = $sr_val->sr_value | 0;
+//                }
+//                array_push($finalArray,$testArray);
+//            }
+//        }
+
+        $finalArray = [];
+        for ($i = 0; $i < count($fr_value) ; $i++){
+            $testArray =(object)[];
+            if($fr_value[$i]->game_date === $sr_value[$i]->game_date) {
+                $testArray->game_date = $fr_value[$i]->game_date;
+                $testArray->fr_value = $fr_value[$i]->fr_value | 0;
+                $testArray->sr_value = $sr_value[$i]->sr_value | 0;
+            }
+            array_push($finalArray,$testArray);
+        }
+
+        return response()->json(array('success' => 1, 'data'=>$finalArray),200);
     }
+
 
     /**
      * Display the specified resource.

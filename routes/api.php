@@ -58,6 +58,8 @@ Route::get("getAdvanceDraws",[DrawMasterController::class,'getAdvanceDrawTimes']
 Route::patch("cancelTicket",[PlayMasterController::class,'cancelTicket']);
 Route::patch("updateCancelable",[PlayMasterController::class,'updateCancelable']);
 
+Route::get("getPreviousResult",[ResultMasterController::class,'getPreviousResult']);
+
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
