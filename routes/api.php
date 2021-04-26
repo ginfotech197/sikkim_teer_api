@@ -34,7 +34,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post("login",[UserController::class,'login']);
 
-Route::post("logout",[UserController::class,'logout']);
+//Route::post("logout",[UserController::class,'logout']);
 
 Route::post("register",[UserController::class,'register']);
 
@@ -62,7 +62,7 @@ Route::patch("updateCancelable",[PlayMasterController::class,'updateCancelable']
 Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
     Route::get("user",[UserController::class,'getCurrentUser']);
-//    Route::post("logout",[UserController::class,'logout']);
+    Route::post("logout",[UserController::class,'logout']);
 
 
     Route::post("saveGameInputDetails",[PlayMasterController::class,'saveGameInputDetails']);

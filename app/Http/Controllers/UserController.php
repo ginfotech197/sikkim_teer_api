@@ -115,7 +115,7 @@ class UserController extends Controller
 //        $person=User::where(['id'=> $userId])->update(['is_loggedin'=>0,'uuid' => NULL]);
 
 //        $result = $request->user()->currentAccessToken()->delete();
-        $result = $request->user()->token($tokenId)->revoke();
+        $result = $request->user()->token()->revoke();
         return $result;
     }
 }
