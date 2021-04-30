@@ -6,6 +6,7 @@ use App\Models\Stockist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\MaxTable;
+use Exception;
 
 class StockistController extends Controller
 {

@@ -6,6 +6,7 @@ use App\Models\DrawMaster;
 use App\Models\NextGameDraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class CentralFunctionController extends Controller
 {

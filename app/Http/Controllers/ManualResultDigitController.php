@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ManualResultDigit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Exception;
 use Illuminate\Support\Carbon;
 
 class ManualResultDigitController extends Controller

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PlaySeries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class PlaySeriesController extends Controller
 {

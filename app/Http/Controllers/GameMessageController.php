@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GameMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class GameMessageController extends Controller
 {

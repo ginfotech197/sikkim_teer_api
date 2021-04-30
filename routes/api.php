@@ -14,6 +14,7 @@ use App\Http\Controllers\ManualResultDigitController;
 use App\Http\Controllers\ResultMasterController;
 use App\Http\Controllers\GameMessageController;
 use App\Http\Controllers\CentralFunctionController;
+use App\Http\Controllers\CommonNumberController;
 use App\Http\Controllers\NextGameDrawController;
 use App\Http\Controllers\ResultDetailsController;
 
@@ -120,5 +121,11 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     //get all users
     Route::get("users",[UserController::class,'getAllUsers']);
+
+    //Common Numbers
+    Route::get("commonNumbers",[CommonNumberController::class,'getAllCommonNumbers']);
+    Route::post("commonNumbers",[CommonNumberController::class,'saveCommonNumbers']);
+
+
 });
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Stockist;
 use App\Models\StockistToTerminal;
 use Illuminate\Support\Facades\DB;
+use Exception;
 use App\Models\PlayDetail;
 
 class RechargeToTerminalController extends Controller
