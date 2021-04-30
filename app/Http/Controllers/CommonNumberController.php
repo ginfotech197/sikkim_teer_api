@@ -12,9 +12,11 @@ class CommonNumberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getAllCommonNumbers()
     {
-        //
+        $commonNumber= CommonNumber::get();
+        return response()->json(['success'=>1,'data'=>$commonNumber ], 200,[],JSON_NUMERIC_CHECK);
+
     }
 
     /**
@@ -22,9 +24,14 @@ class CommonNumberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function saveCommonNumbers(Request $request)
     {
-        //
+        $input=($request->json()->all());
+        $inputPurchaseMaster=(object)($input['purchase_master']);
+        $inputPurchaseDetails=($input['purchase_details']);
+        $inputTransactionMaster=(object)($input['transaction_master']);
+        $inputTransactionDetails=($input['transaction_details']);
+        $inputExtraItems=($input['extra_items']);
     }
 
     /**

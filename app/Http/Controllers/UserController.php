@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\StockistToTerminal;
+use Illuminate\Support\Facades\DB;
+use Exception;
 use Laravel\Sanctum\PersonalAccessToken;
 
 class UserController extends Controller

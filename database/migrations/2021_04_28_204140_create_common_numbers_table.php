@@ -16,10 +16,10 @@ class CreateCommonNumbersTable extends Migration
     {
         Schema::create('common_numbers', function (Blueprint $table) {
             $table->id();
-            $table->integer('house');
-            $table->integer('ending');
-            $table->integer('direct_one');
-            $table->integer('direct_two');
+            $table->integer('house')->nullable(true);
+            $table->integer('ending')->nullable(true);
+            $table->integer('direct_one')->nullable(true);
+            $table->integer('direct_two')->nullable(true);
 
             $table->bigInteger('draw_master_id')->unsigned();
             $table ->foreign('draw_master_id')->references('id')->on('draw_masters');

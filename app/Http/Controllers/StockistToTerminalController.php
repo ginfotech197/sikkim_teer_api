@@ -6,6 +6,9 @@ use App\Models\StockistToTerminal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\MaxTable;
+use Illuminate\Support\Facades\DB;
+use Exception;
+
 
 class StockistToTerminalController extends Controller
 {
