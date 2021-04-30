@@ -35,9 +35,10 @@ class CommonNumberController extends Controller
      */
     public function saveCommonNumbers(Request $request)
     {
-        $inputs=($request->json()->all());
+        $requestedData=($request->json()->all());
+        $inputs = $requestedData['common_numbers'];
         $first_record= CommonNumber::first();
-
+        
         // return response()->json(['success'=>1,'data'=> $x], 200,[],JSON_NUMERIC_CHECK);
         DB::beginTransaction();
 
@@ -52,18 +53,18 @@ class CommonNumberController extends Controller
 
                 }
 
-                $commonNumber1->house=$inputs[0]['house'];
-                $commonNumber1->ending=$inputs[0]['ending'];
-                $commonNumber1->direct_one=$inputs[0]['direct_one'];
-                $commonNumber1->direct_two=$inputs[0]['direct_two'];
-                $commonNumber1->draw_master_id=$inputs[0]['draw_master_id'];
+                $commonNumber1->house =!empty($inputs[0]['house'])? $inputs[0]['house'] : NULL;
+                $commonNumber1->ending = !empty($inputs[0]['ending'])? $inputs[0]['ending'] : NULL;
+                $commonNumber1->direct_one = !empty($inputs[0]['direct_one'])? $inputs[0]['direct_one'] : NULL;
+                $commonNumber1->direct_two = !empty($inputs[0]['direct_two'])? $inputs[0]['direct_two'] : NULL;
+                $commonNumber1->draw_master_id = !empty($inputs[0]['draw_master_id'])? $inputs[0]['draw_master_id']: NULL;
                 $commonNumber1->save();
 
-                $commonNumber2->house=$inputs[1]['house'];
-                $commonNumber2->ending=$inputs[1]['ending'];
-                $commonNumber2->direct_one=$inputs[1]['direct_one'];
-                $commonNumber2->direct_two=$inputs[1]['direct_two'];
-                $commonNumber2->draw_master_id=$inputs[1]['draw_master_id'];
+                $commonNumber2->house = !empty($inputs[1]['house'])? $inputs[1]['house'] : NULL;
+                $commonNumber2->ending = !empty($inputs[1]['ending'])? $inputs[1]['ending'] : NULL;
+                $commonNumber2->direct_one = !empty($inputs[1]['direct_one'])? $inputs[1]['direct_one'] : NULL;
+                $commonNumber2->direct_two = !empty($inputs[1]['direct_two']) ? $inputs[1]['direct_two'] : NULL;
+                $commonNumber2->draw_master_id = !empty($inputs[1]['draw_master_id'])? $inputs[1]['draw_master_id'] : NULL;
                 $commonNumber2->save();
 
                 $commonNumbers[]= $commonNumber1;
