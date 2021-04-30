@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
 
             $table->string('password');
             $table->string('pin')->nullable(true);
-            $table->string('default_password');
+            $table->string('default_password')->default('12345');
             $table->rememberToken();
             $table->string('mobile',15)->nullable(true);
             $table->string('address',50)->nullable(true);

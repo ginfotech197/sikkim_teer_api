@@ -6,6 +6,7 @@ use App\Models\StockistToTerminal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\MaxTable;
+use Illuminate\Support\Facades\DB;
 
 class StockistToTerminalController extends Controller
 {
@@ -46,7 +47,7 @@ class StockistToTerminalController extends Controller
         $financial_year = $objCentralFunctionCtrl->get_financial_year();
         try
         {
-            DB::insert("insert into max_tables (subject_name,person_category_id, current_value, financial_year,prefix)
+            DB::insert("insert into max_tables (subject_name,user_type_id, current_value, financial_year,prefix)
             values('terminal',3,510501,?,'T')
             on duplicate key UPDATE id=last_insert_id(id), current_value=current_value+1", [$financial_year]);
             $lastInsertId = DB::getPdo()->lastInsertId();
@@ -54,10 +55,10 @@ class StockistToTerminalController extends Controller
             $terminalUniqueId = $max_table_data->current_value;
 
             $terminalObj = new User();
-            $terminalObj->people_unique_id = $terminalUniqueId;
-            $terminalObj->user_name = $requestedData->terminal['user_name'];
+//            $terminalObj->people_unique_id = $terminalUniqueId;
+            $terminalObj->user_name = $requestedData->terminal['people_name'];
             $terminalObj->email = $requestedData->terminal['user_id'];
-            $terminalObj->user_password = $requestedData->terminal['user_password'];
+            $terminalObj->password = $requestedData->terminal['user_password'];
             $terminalObj->user_type_id = 3;
             $terminalObj->save();
             $lastInsertedTerminalId = DB::getPdo()->lastInsertId();
