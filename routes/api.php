@@ -122,10 +122,13 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     //get all users
     Route::get("users",[UserController::class,'getAllUsers']);
 
-    //Common Numbers
-    Route::get("commonNumbers",[CommonNumberController::class,'getAllCommonNumbers']);
-    Route::post("commonNumbers",[CommonNumberController::class,'saveCommonNumbers']);
+
 
 
 });
+//Common Numbers
+Route::get("commonNumbers",[CommonNumberController::class,'getAllCommonNumbers']);
+Route::get("commonNumbers",[CommonNumberController::class,'getAllCommonNumbersByCurrentDate']);
+Route::post("commonNumbers",[CommonNumberController::class,'saveCommonNumbers']);
+Route::patch("commonNumbers",[CommonNumberController::class,'UpdateCommonNumbers']);
 

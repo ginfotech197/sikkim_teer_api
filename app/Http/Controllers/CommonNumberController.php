@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CommonNumber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class CommonNumberController extends Controller
 {
@@ -19,6 +21,13 @@ class CommonNumberController extends Controller
 
     }
 
+    public function getAllCommonNumbersByCurrentDate()
+    {
+        // $commonNumber= CommonNumber::get();
+        $commonNumber =CommonNumber::select()->whereRaw("date(updated_at)=CURDATE()")->get();
+        return response()->json(['success'=>1,'data'=>$commonNumber ], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,12 +35,50 @@ class CommonNumberController extends Controller
      */
     public function saveCommonNumbers(Request $request)
     {
-        $input=($request->json()->all());
-        $inputPurchaseMaster=(object)($input['purchase_master']);
-        $inputPurchaseDetails=($input['purchase_details']);
-        $inputTransactionMaster=(object)($input['transaction_master']);
-        $inputTransactionDetails=($input['transaction_details']);
-        $inputExtraItems=($input['extra_items']);
+        $inputs=($request->json()->all());
+        $first_record= CommonNumber::first();
+
+        // return response()->json(['success'=>1,'data'=> $x], 200,[],JSON_NUMERIC_CHECK);
+        DB::beginTransaction();
+
+        try{
+                if($first_record){
+                    $first_id= $first_record->id;
+                    $commonNumber1= CommonNumber::find($first_id);
+                    $commonNumber2= CommonNumber::find($first_id+1);
+                }else{
+                    $commonNumber1= new CommonNumber();
+                    $commonNumber2= new CommonNumber();
+
+                }
+
+                $commonNumber1->house=$inputs[0]['house'];
+                $commonNumber1->ending=$inputs[0]['ending'];
+                $commonNumber1->direct_one=$inputs[0]['direct_one'];
+                $commonNumber1->direct_two=$inputs[0]['direct_two'];
+                $commonNumber1->draw_master_id=$inputs[0]['draw_master_id'];
+                $commonNumber1->save();
+
+                $commonNumber2->house=$inputs[1]['house'];
+                $commonNumber2->ending=$inputs[1]['ending'];
+                $commonNumber2->direct_one=$inputs[1]['direct_one'];
+                $commonNumber2->direct_two=$inputs[1]['direct_two'];
+                $commonNumber2->draw_master_id=$inputs[1]['draw_master_id'];
+                $commonNumber2->save();
+
+                $commonNumbers[]= $commonNumber1;
+                $commonNumbers[]= $commonNumber2;
+
+
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+        return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
+        }
+
+
+        return response()->json(['success'=>1,'data'=> $commonNumbers], 200,[],JSON_NUMERIC_CHECK);
+        // return response()->json(['success'=>1,'data'=> 'checking text'], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -74,9 +121,18 @@ class CommonNumberController extends Controller
      * @param  \App\Models\CommonNumber  $commonNumber
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CommonNumber $commonNumber)
+    public function UpdateCommonNumbers(Request $request)
     {
-        //
+        $commonNumber= new CommonNumber();
+        $commonNumber= CommonNumber::find($request->input('id'));
+        $commonNumber->house=$request->input('house');
+        $commonNumber->direct_one=$request->input('direct_one');
+        $commonNumber->direct_two=$request->input('direct_two');
+        $commonNumber->draw_master_id=$request->input('draw_master_id');
+        $commonNumber->save();
+
+        return response()->json(['success'=>1,'data'=> $commonNumber], 200,[],JSON_NUMERIC_CHECK);
+
     }
 
     /**
