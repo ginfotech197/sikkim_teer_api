@@ -53,18 +53,26 @@ class ResultMasterController extends Controller
         return response()->json(array('success' => 1, 'message' => 'Successfully recorded'),200);
     }
 
-    public function getPreviousResult(){
+    public function getPreviousResult(request $request){
+
+        $requestedData = (object)($request->json()->all());
+        $start_date = $requestedData->start_date;
+        $end_date = $requestedData->end_date;
+
 //        $data = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=1,(result_details.result_row*10 + result_details.result_col),0) as fr_value,
 //            if(result_masters.draw_master_id=2,(result_details.result_row*10 + result_details.result_col),0) as sr_value from result_masters
 //            inner join result_details on result_details.result_master_id = result_masters.id');
 
         $fr_value = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=1,(result_details.result_row*10 + result_details.result_col),0) as fr_value from result_masters
             inner join result_details on result_details.result_master_id = result_masters.id
-            where result_masters.draw_master_id = 1');
+            where result_masters.draw_master_id = 1 and result_masters.game_date>= ? and result_masters.game_date<= ?', [$start_date,$end_date]);
+//        return response()->json(array('success' => 1, 'data'=>$fr_value),200);
 
         $sr_value = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=2,(result_details.result_row*10 + result_details.result_col),0) as sr_value from result_masters
             inner join result_details on result_details.result_master_id = result_masters.id
-            where result_masters.draw_master_id = 2');
+            where result_masters.draw_master_id = 2 and result_masters.game_date>= ? and result_masters.game_date<= ?', [$start_date,$end_date]);
+
+//        return response()->json(array('success' => 1, 'data'=>$fr_value, 'data2'=>$sr_value),200);
 
 //        $finalArray = [];
 //        foreach ($fr_value as $fr_val){
@@ -80,7 +88,12 @@ class ResultMasterController extends Controller
 //        }
 
         $finalArray = [];
-        for ($i = 0; $i < count($fr_value) ; $i++){
+        if(count($fr_value)<=count($sr_value)){
+            $count = count($fr_value);
+        }else{
+            $count = count($sr_value);
+        }
+        for ($i = 0; $i < $count ; $i++){
             $testArray =(object)[];
             if($fr_value[$i]->game_date === $sr_value[$i]->game_date) {
                 $testArray->game_date = $fr_value[$i]->game_date;
