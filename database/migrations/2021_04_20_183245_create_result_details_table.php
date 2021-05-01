@@ -26,7 +26,8 @@ class CreateResultDetailsTable extends Migration
             $table->bigInteger('play_series_id')->unsigned()->nullable(true);
             $table ->foreign('play_series_id')->references('id')->on('play_series');
 
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
