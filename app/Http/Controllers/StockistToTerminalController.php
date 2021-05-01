@@ -56,9 +56,10 @@ class StockistToTerminalController extends Controller
 
             $terminalObj = new User();
 //            $terminalObj->people_unique_id = $terminalUniqueId;
-            $terminalObj->user_name = $requestedData->terminal['people_name'];
+            $terminalObj->user_name = $requestedData->terminal['user_name'];
             $terminalObj->email = $requestedData->terminal['user_id'];
             $terminalObj->password = $requestedData->terminal['user_password'];
+            $terminalObj->pin = $requestedData->terminal['user_password'];
             $terminalObj->user_type_id = 3;
             $terminalObj->save();
             $lastInsertedTerminalId = DB::getPdo()->lastInsertId();

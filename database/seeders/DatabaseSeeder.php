@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
 
         User::create(['user_name'=>'Nirmal Roy','email'=>'admin','password'=>'12345','pin'=>'12345','default_password'=>'12345','mobile'=>'9836444999','address'=>'Barrackpore','user_type_id'=>1]);
-        User::create(['user_name'=>'Bimal das','email'=>'510501','password'=>'12345','pin'=>'12345','default_password'=>'12345','mobile'=>'9836444999','address'=>'Barrackpore','user_type_id'=>3]);
+        User::create(['user_name'=>'Bimal das','email'=>'T510501','password'=>'12345','pin'=>'12345','default_password'=>'12345','mobile'=>'9836444999','address'=>'Barrackpore','user_type_id'=>3]);
         User::create(['user_name'=>'Ram Nandi','email'=>'st001','password'=>'12345','pin'=>'12345','default_password'=>'12345','mobile'=>'9836444999','address'=>'Barrackpore','user_type_id'=>4]);
 
         // draw_masters table data
