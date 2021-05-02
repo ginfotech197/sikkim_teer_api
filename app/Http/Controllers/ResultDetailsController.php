@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\DB;
 class ResultDetailsController extends Controller
 {
     function getPreviousDrawResult(){
-        $result = ResultDetails::
-        select('result_masters.draw_master_id','serial_number','end_time','result_row','result_col'
-            ,DB::raw("DATE_FORMAT(result_masters.game_date, '%d-%m-%Y') as draw_date"))
-            ->join('result_masters', 'result_details.result_master_id', '=', 'result_masters.id')
-            ->join('draw_masters', 'result_masters.draw_master_id', '=', 'draw_masters.id')
-            ->whereRaw("date(result_masters.created_at) = curdate()")
-            ->orderByRaw("draw_masters.serial_number DESC")
-            ->limit(1)
-            ->first();
+        $result = DB::select(DB::raw("select game_date,max(fr)as fr, max(sr) as sr from (select game_date, case when draw_master_id=1 then result end as fr,
+        case when draw_master_id=2 then result end as sr
+
+        from (select result_masters.id,result_masters.game_date, result_masters.draw_master_id, draw_masters.draw_name,
+        (result_details.result_row *10) + result_details.result_col as result  from result_masters
+        inner join result_details on result_details.result_master_id = result_masters.id
+        inner join draw_masters on draw_masters.id = result_masters.draw_master_id
+        where result_masters.game_date<CURDATE()) as table1)  as table2
+        group by game_date order by game_date desc limit 10"));
         return json_encode($result);
     }
 
