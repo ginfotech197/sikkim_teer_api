@@ -65,12 +65,12 @@ class ResultMasterController extends Controller
 
         $fr_value = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=1,(result_details.result_row*10 + result_details.result_col),0) as fr_value from result_masters
             inner join result_details on result_details.result_master_id = result_masters.id
-            where result_masters.draw_master_id = 1 and result_masters.game_date>= ? and result_masters.game_date<= ?', [$start_date,$end_date]);
+            where result_masters.draw_master_id = 1 and result_masters.game_date>= ? and result_masters.game_date<= ? order by result_masters.game_date desc', [$start_date,$end_date]);
 //        return response()->json(array('success' => 1, 'data'=>$fr_value),200);
 
         $sr_value = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=2,(result_details.result_row*10 + result_details.result_col),0) as sr_value from result_masters
             inner join result_details on result_details.result_master_id = result_masters.id
-            where result_masters.draw_master_id = 2 and result_masters.game_date>= ? and result_masters.game_date<= ?', [$start_date,$end_date]);
+            where result_masters.draw_master_id = 2 and result_masters.game_date>= ? and result_masters.game_date<= ? order by result_masters.game_date desc', [$start_date,$end_date]);
 
 //        return response()->json(array('success' => 1, 'data'=>$fr_value, 'data2'=>$sr_value),200);
 

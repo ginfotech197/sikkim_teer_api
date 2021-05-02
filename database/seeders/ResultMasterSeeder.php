@@ -79,8 +79,8 @@ class ResultMasterSeeder extends Seeder
         ResultMaster::create(['game_date' => '2020-01-11', 'draw_master_id'=> 1]);
         ResultDetails::create(['result_row' => 4, 'result_col'=>5, 'payout'=>150, 'result_master_id'=>21, 'play_series_id'=>1]);
 
-//        ResultMaster::create(['game_date' => '2020-01-11', 'draw_master_id'=> 2]);
-//        ResultDetails::create(['result_row' => 0, 'result_col'=>8, 'payout'=>150, 'result_master_id'=>22, 'play_series_id'=>1]);
+        ResultMaster::create(['game_date' => '2020-01-11', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 0, 'result_col'=>8, 'payout'=>150, 'result_master_id'=>22, 'play_series_id'=>1]);
 
         ResultMaster::create(['game_date' => '2020-01-12', 'draw_master_id'=> 1]);
         ResultDetails::create(['result_row' => 2, 'result_col'=>9, 'payout'=>150, 'result_master_id'=>23, 'play_series_id'=>1]);
@@ -646,6 +646,157 @@ class ResultMasterSeeder extends Seeder
         ResultMaster::create(['game_date' => '2020-04-16', 'draw_master_id'=> 2]);
         ResultDetails::create(['result_row' => 8, 'result_col'=>0, 'payout'=>150, 'result_master_id'=>210, 'play_series_id'=>1]);
 
+
+        //April 2021
+        ResultMaster::create(['game_date' => '2021-04-01', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 5, 'result_col'=>6, 'payout'=>150, 'result_master_id'=>211, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-01', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 2, 'result_col'=>1, 'payout'=>150, 'result_master_id'=>212, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-02', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 0, 'result_col'=>0, 'payout'=>150, 'result_master_id'=>213, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-02', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 9, 'result_col'=>9, 'payout'=>150, 'result_master_id'=>214, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-08', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 8, 'result_col'=>9, 'payout'=>150, 'result_master_id'=>215, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-08', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 4, 'result_col'=>3, 'payout'=>150, 'result_master_id'=>216, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-09', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 7, 'result_col'=>6, 'payout'=>150, 'result_master_id'=>217, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-09', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 0, 'result_col'=>2, 'payout'=>150, 'result_master_id'=>218, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-10', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 9, 'result_col'=>8, 'payout'=>150, 'result_master_id'=>219, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-10', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 3, 'result_col'=>2, 'payout'=>150, 'result_master_id'=>220, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-11', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 0, 'result_col'=>0, 'payout'=>150, 'result_master_id'=>221, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-11', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 7, 'result_col'=>8, 'payout'=>150, 'result_master_id'=>222, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-12', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 1, 'result_col'=>3, 'payout'=>150, 'result_master_id'=>223, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-12', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 5, 'result_col'=>1, 'payout'=>150, 'result_master_id'=>224, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-13', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 0, 'result_col'=>0, 'payout'=>150, 'result_master_id'=>225, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-13', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 6, 'result_col'=>7, 'payout'=>150, 'result_master_id'=>226, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-14', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 1, 'result_col'=>2, 'payout'=>150, 'result_master_id'=>227, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-14', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 1, 'result_col'=>9, 'payout'=>150, 'result_master_id'=>228, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-15', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 2, 'result_col'=>4, 'payout'=>150, 'result_master_id'=>229, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-15', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 8, 'result_col'=>6, 'payout'=>150, 'result_master_id'=>230, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-16', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 1, 'result_col'=>2, 'payout'=>150, 'result_master_id'=>231, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-16', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 5, 'result_col'=>5, 'payout'=>150, 'result_master_id'=>232, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-18', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 7, 'result_col'=>6, 'payout'=>150, 'result_master_id'=>233, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-18', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 8, 'result_col'=>4, 'payout'=>150, 'result_master_id'=>234, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-19', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 3, 'result_col'=>1, 'payout'=>150, 'result_master_id'=>235, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-19', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 8, 'result_col'=>0, 'payout'=>150, 'result_master_id'=>236, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-20', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 4, 'result_col'=>9, 'payout'=>150, 'result_master_id'=>237, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-20', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 1, 'result_col'=>1, 'payout'=>150, 'result_master_id'=>238, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-21', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 9, 'result_col'=>5, 'payout'=>150, 'result_master_id'=>239, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-21', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 2, 'result_col'=>8, 'payout'=>150, 'result_master_id'=>240, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-22', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 6, 'result_col'=>8, 'payout'=>150, 'result_master_id'=>241, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-22', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 3, 'result_col'=>7, 'payout'=>150, 'result_master_id'=>242, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-23', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 8, 'result_col'=>2, 'payout'=>150, 'result_master_id'=>243, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-23', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 0, 'result_col'=>0, 'payout'=>150, 'result_master_id'=>244, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-24', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 1, 'result_col'=>7, 'payout'=>150, 'result_master_id'=>245, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-24', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 9, 'result_col'=>0, 'payout'=>150, 'result_master_id'=>246, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-25', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 5, 'result_col'=>4, 'payout'=>150, 'result_master_id'=>247, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-25', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 8, 'result_col'=>3, 'payout'=>150, 'result_master_id'=>248, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-26', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 2, 'result_col'=>7, 'payout'=>150, 'result_master_id'=>249, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-26', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 6, 'result_col'=>9, 'payout'=>150, 'result_master_id'=>250, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-27', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 3, 'result_col'=>8, 'payout'=>150, 'result_master_id'=>251, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-27', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 7, 'result_col'=>7, 'payout'=>150, 'result_master_id'=>252, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-28', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 0, 'result_col'=>1, 'payout'=>150, 'result_master_id'=>253, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-28', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 9, 'result_col'=>6, 'payout'=>150, 'result_master_id'=>254, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-29', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 7, 'result_col'=>3, 'payout'=>150, 'result_master_id'=>255, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-29', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 5, 'result_col'=>8, 'payout'=>150, 'result_master_id'=>256, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-30', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 4, 'result_col'=>6, 'payout'=>150, 'result_master_id'=>257, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-04-30', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 0, 'result_col'=>3, 'payout'=>150, 'result_master_id'=>258, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-05-01', 'draw_master_id'=> 1]);
+        ResultDetails::create(['result_row' => 1, 'result_col'=>8, 'payout'=>150, 'result_master_id'=>259, 'play_series_id'=>1]);
+
+        ResultMaster::create(['game_date' => '2021-05-01', 'draw_master_id'=> 2]);
+        ResultDetails::create(['result_row' => 5, 'result_col'=>6, 'payout'=>150, 'result_master_id'=>260, 'play_series_id'=>1]);
 
     }
 }
