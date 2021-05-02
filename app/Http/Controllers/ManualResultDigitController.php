@@ -12,7 +12,7 @@ class ManualResultDigitController extends Controller
 {
     public function getDrawTimeForManualResult(){
         $drawTime = DB::select(DB::raw("select * from draw_masters where id not in
-        (select draw_master_id from result_masters where date(created_at)=(curdate())) AND id not in
+        (select draw_master_id from result_masters where game_date=(curdate())) AND id not in
         (select draw_master_id from manual_result_digits where date(created_at)=curdate()) order by serial_number"));
         return json_encode($drawTime,JSON_NUMERIC_CHECK);
     }
