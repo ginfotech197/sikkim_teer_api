@@ -58,12 +58,12 @@ class ManualResultDigitController extends Controller
         $requestedData = (object)($request->json()->all());
         $drawMasterId = $requestedData->master['draw_master_id'];
         $gameDate = $currentDate = Carbon::now()->format('Y-m-d');
-        $result = ($requestedData->master['aandar']*10)+$requestedData->master['bahar'];
+        $result = $requestedData->master['bahar'];
         try
         {
             if($result){
                 ManualResultDigit::where('draw_master_id',$drawMasterId)
-                    ->where('play_series_id',2)
+                    ->where('play_series_id',1)
                     ->whereRaw("manual_result_digits.game_date = curdate()")
                     ->update(["result" => $result]);
             }
