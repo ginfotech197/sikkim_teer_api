@@ -170,7 +170,7 @@ class RechargeToTerminalController extends Controller
                     where play_masters.draw_master_id=? and play_details.play_series_id=1 AND date(play_masters.created_at)=curdate()
                     group by play_details.row_num,play_details.col_num
                     order by play_details.row_num,play_details.col_num) as table1 group by row_num",[$drawId]);
-        return array('singleInput'=>$singleInput,'jodiInput'=>$jodiInput);
+        return array('jodiInput'=>$jodiInput);
     }
 
     public function barcodeReportFromTerminal(request $request){
