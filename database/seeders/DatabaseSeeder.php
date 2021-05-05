@@ -53,9 +53,9 @@ class DatabaseSeeder extends Seeder
 
 
         //play_series table data
-        PlaySeries::create(['series_name'=>'Jodi','game_initial' => '' ,'mrp'=> 1.00, 'winning_price'=>90, 'commision'=>5.00, 'payout'=>150,'default_payout'=>150]);
+        PlaySeries::create(['series_name'=>'Jodi','game_initial' => '' ,'mrp'=> 10.00, 'winning_price'=>90, 'commision'=>5.00, 'payout'=>150,'default_payout'=>150]);
 
-        
+
         //games table data
         Game::create(['game_name'=>'2D']);
 

@@ -66,7 +66,7 @@ class RechargeToTerminalController extends Controller
         $startDate = $requestedData->start_date;
         $reportData = DB::select("select *
         ,if(is_claimed=1,'Yes','No') as claimed
-        from (select max(email) as email,
+        from (select max(email) as terminal_user_id,
                     max(draw_time) as draw_time
                     ,max(ticket_taken_time) as ticket_taken_time
                     ,barcode
