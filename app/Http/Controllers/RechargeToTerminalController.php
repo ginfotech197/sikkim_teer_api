@@ -162,7 +162,7 @@ class RechargeToTerminalController extends Controller
     public function getTotalBoxInput(request $request){
         $requestedData = (object)($request->json()->all());
         $drawId = $requestedData->draw_id;
-        $singleInput = DB::select('call  secondLastTotal(?)',array($drawId));
+//        $singleInput = DB::select('call  secondLastTotal(?)',array($drawId));
 
         $jodiInput = DB::select("select group_concat(row_num,col_num,'-',game_value) as game_value from (select play_details.row_num,
                     play_details.col_num, sum(play_details.game_value) as game_value from play_details
