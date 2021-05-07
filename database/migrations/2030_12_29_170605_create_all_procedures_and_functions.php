@@ -48,7 +48,7 @@ class CreateAllProceduresAndFunctions extends Migration
                 FROM
                     (
                     SELECT
-                        COALESCE(email, \'Grand Total\') AS email,
+                        COALESCE(email, \'Grand Total\') AS terminal_user_id,
                         MAX(agent_name) AS agent_name,
                         COALESCE(terminal_id) AS terminal_id,
                         MAX(stockist_user_id) AS stockist_user_id,
@@ -584,7 +584,7 @@ class CreateAllProceduresAndFunctions extends Migration
             BEGIN
             declare x float;
             select sum(total_sale) into x from
-            (select play_details.play_series_id,sum(play_details.game_value)* play_series.mrp as total_sale
+            (select play_details.play_series_id,sum(play_details.game_value)* max(play_series.mrp) as total_sale
             from play_details inner join
             (select * from play_masters where terminal_id=termId and date(created_at)=saleDate)play_masters
             ON play_masters.id = play_details.play_master_id
