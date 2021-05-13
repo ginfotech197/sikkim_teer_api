@@ -43,9 +43,9 @@ class DatabaseSeeder extends Seeder
         DrawMaster::create(['serial_number'=>2, 'draw_name'=>'S/R', 'start_time'=>'05:00:00', 'end_time'=>'06:00:00', 'meridiem'=>'PM', 'active'=>0,'diff'=>0]);
 
 
-        Stockist::create(['stockist_unique_id'=>'ST-0001','stockist_name' => 'test stockist' ,'user_id'=> 510501, 'user_password'=>12345, 'serial_number'=>1, 'current_balance'=>1000,'user_type_id'=>3]);
+        Stockist::create(['stockist_unique_id'=>'ST-0001','stockist_name' => 'test stockist' ,'user_id'=> 510501, 'user_password'=>12345, 'serial_number'=>1, 'current_balance'=>99999,'user_type_id'=>3]);
 
-        StockistToTerminal::create(['stockist_id'=>1,'terminal_id' => 2 ,'current_balance'=> 1000, 'inforce'=>1]);
+        StockistToTerminal::create(['stockist_id'=>1,'terminal_id' => 2 ,'current_balance'=> 99999, 'inforce'=>1]);
 
 
         // barcode_maxes table data

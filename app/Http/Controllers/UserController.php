@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Stockist;
 use App\Models\User;
 use App\Http\Resources\UserResource;
+Use App\Http\Resources\StockiestResource;
 use App\Models\UserType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,10 +21,6 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-
-
-
-
         $user = User::create([
             'email'    => $request->email,
             'password' => $request->password,
@@ -44,18 +42,44 @@ class UserController extends Controller
     function login(Request $request)
     {
         $user= User::where('email', $request->userId)->first();
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['success'=>0,'data'=>null, 'message'=>'Credential does not matched'], 200,[],JSON_NUMERIC_CHECK);
+        if($user) {
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return response()->json(['success' => 0, 'data' => null, 'message' => 'Credential does not matched'], 200, [], JSON_NUMERIC_CHECK);
+            }
+
+            $token = $user->createToken('my-app-token')->plainTextToken;
+            $category = UserType::find($user->user_type_id);
+
+            $response = [
+                'user' => new UserResource($user),
+                'token' => $token
+            ];
+            $StockistToTerminal = User::find($user->id)->StockistToTerminal->first();
+        }else{
+            $user= Stockist::where('user_id', $request->userId)->where('user_password', $request->password)->first();
+            $token = $user->createToken('my-app-token')->plainTextToken;
+            $category = UserType::find($user->user_type_id);
+
+            $categoryData = (object)[
+                'type_id' => $category->id,
+                'type_name' => $category->user_type_name
+            ];
+
+            $userData = (object)[
+                'id' => $user->id,
+                'user_id' => $user->user_id,
+                'user_name' => $user->stockist_name,
+                'email' => $user->user_id,
+                'user_type' => $categoryData,
+            ];
+
+            $response = [
+                'user' => $userData,
+//                'user' => $user,
+                'token' => $token
+            ];
+            $StockistToTerminal = null;
         }
-
-        $token = $user->createToken('my-app-token')->plainTextToken;
-        $category = UserType::find($user->user_type_id);
-
-        $response = [
-            'user' => new UserResource($user),
-            'token' => $token
-        ];
-        $StockistToTerminal=User::find($user->id)->StockistToTerminal->first();
         return response()->json(['success'=>1,'data'=>$response,'StockistToTerminal'=> $StockistToTerminal, 'message'=>'Welcome'], 200,[],JSON_NUMERIC_CHECK);
     }
 
