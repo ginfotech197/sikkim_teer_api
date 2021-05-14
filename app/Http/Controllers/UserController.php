@@ -55,8 +55,9 @@ class UserController extends Controller
                 'token' => $token
             ];
             $StockistToTerminal = User::find($user->id)->StockistToTerminal->first();
-        }else{
-            $user= Stockist::where('user_id', $request->userId)->where('user_password', $request->password)->first();
+        }else {
+            $user = Stockist::where('user_id', $request->userId)->where('user_password', $request->password)->first();
+            if ($user) {
             $token = $user->createToken('my-app-token')->plainTextToken;
             $category = UserType::find($user->user_type_id);
 
@@ -79,6 +80,9 @@ class UserController extends Controller
                 'token' => $token
             ];
             $StockistToTerminal = null;
+            }else{
+                return response()->json(['success'=>0,'data'=>null,'StockistToTerminal'=> null, 'message'=>'Login Failed'], 200,[],JSON_NUMERIC_CHECK);
+            }
         }
         return response()->json(['success'=>1,'data'=>$response,'StockistToTerminal'=> $StockistToTerminal, 'message'=>'Welcome'], 200,[],JSON_NUMERIC_CHECK);
     }

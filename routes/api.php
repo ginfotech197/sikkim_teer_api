@@ -99,6 +99,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     // report
     Route::post("getTerminalTotalSaleReport",[RechargeToTerminalController::class,'getTerminalTotalSaleReport']);
     Route::post("getAllBarcodeReportByDate",[RechargeToTerminalController::class,'getAllBarcodeReportByDate']);
+    Route::post("getAllBarcodeReportByDateStockiest",[RechargeToTerminalController::class,'getAllBarcodeReportByDateStockiest']);
     Route::post("getBarcodeInputDetails",[RechargeToTerminalController::class,'getBarcodeInputDetails']);
     Route::post("drawWiseReport",[RechargeToTerminalController::class,'drawWiseReport']);
     Route::post("resultFromCPanel",[ResultMasterController::class,'getResultByDateFromCPanel']);
