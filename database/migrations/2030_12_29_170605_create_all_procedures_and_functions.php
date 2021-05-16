@@ -15,46 +15,48 @@ class CreateAllProceduresAndFunctions extends Migration
     public function up()
     {
         DB::unprepared('drop VIEW IF EXISTS getAllBarcodeReport;
-Create view getAllBarcodeReport as (select *
-        ,if(is_claimed=1,\'Yes\',\'No\') as claimed
-        from (select max(email) as terminal_user_id,
-                    max(draw_time) as draw_time
-                    ,max(ticket_taken_time) as ticket_taken_time
-                    ,barcode
-                    ,max(play_master_id) as play_master_id
-                    ,max(terminal_id) as terminal_id
-                    ,max(draw_master_id) as draw_master_id
-                    ,sum(game_value) as quantity
-                    ,sum(game_value* mrp) as amount
-                    ,get_prize_value_of_barcode(barcode) as prize_value
-                    ,group_concat(row_num,\'-[\',game_value,\']\' order by row_num) as particulars
-                    ,max(is_claimed) as is_claimed
-                    ,max(is_cancelled) as is_cancelled
-                    from (select
-                    play_masters.barcode_number as barcode
-                    ,play_masters.id as play_master_id
-                    , max(play_masters.terminal_id) as terminal_id
-                    ,max(users.email) as email
-                    , play_details.play_series_id
-                    ,max(play_series.mrp) as mrp
-                    , max(play_masters.draw_master_id) as draw_master_id
-                    ,max(play_masters.is_claimed) as is_claimed
-                    ,max(play_masters.is_cancelled) as is_cancelled
-                    , play_details.row_num as row_num
-                    , play_details.col_num as col_num
-                    , max(play_details.game_value) as game_value
-                    , max(draw_masters.start_time) as start_time
-                    , TIME_FORMAT(max(draw_masters.end_time),\'%h:%i:%s %p\') as draw_time
-                    ,TIME_FORMAT(max(play_masters.created_at), \'%h:%i:%s %p\') as ticket_taken_time
-                    from play_details
-                    inner join play_masters ON play_masters.id = play_details.play_master_id
-                    inner join draw_masters ON draw_masters.id = play_masters.draw_master_id
-                    inner join play_series ON play_series.id = play_details.play_series_id
-                    inner join users on users.id = play_masters.terminal_id
-                    group by play_details.play_master_id,play_masters.id
-                    ,play_masters.barcode_number,play_details.play_series_id
-                    ,play_details.row_num,play_details.col_num) as table1
-                    group by barcode order by draw_master_id desc,ticket_taken_time desc) as table2)');
+                Create view getAllBarcodeReport as (select *
+                ,if(is_claimed=1,\'Yes\',\'No\') as claimed
+                from (select max(email) as terminal_user_id,
+                            max(draw_time) as draw_time
+                            ,max(ticket_taken_time) as ticket_taken_time
+                            ,barcode
+                            ,max(play_master_id) as play_master_id
+                            ,max(terminal_id) as terminal_id
+                            ,max(draw_master_id) as draw_master_id
+                            ,sum(game_value) as quantity
+                            ,sum(game_value* mrp) as amount
+                            ,get_prize_value_of_barcode(barcode) as prize_value
+                            ,group_concat(row_num,\'-[\',game_value,\']\' order by row_num) as particulars
+                            ,max(is_claimed) as is_claimed
+                            ,max(is_cancelled) as is_cancelled
+                            from (select
+                            play_masters.barcode_number as barcode
+                            ,play_masters.id as play_master_id
+                            , max(play_masters.terminal_id) as terminal_id
+                            ,max(users.email) as email
+                            , play_details.play_series_id
+                            ,max(play_series.mrp) as mrp
+                            , max(play_masters.draw_master_id) as draw_master_id
+                            ,max(play_masters.is_claimed) as is_claimed
+                            ,max(play_masters.is_cancelled) as is_cancelled
+                            , play_details.row_num as row_num
+                            , play_details.col_num as col_num
+                            , max(play_details.game_value) as game_value
+                            , max(draw_masters.start_time) as start_time
+                            , TIME_FORMAT(max(draw_masters.end_time),\'%h:%i:%s %p\') as draw_time
+                            ,TIME_FORMAT(max(play_masters.created_at), \'%h:%i:%s %p\') as ticket_taken_time
+                            from play_details
+                            inner join play_masters ON play_masters.id = play_details.play_master_id
+                            inner join draw_masters ON draw_masters.id = play_masters.draw_master_id
+                            inner join play_series ON play_series.id = play_details.play_series_id
+                            inner join users on users.id = play_masters.terminal_id
+                            inner join stockist_to_terminals on stockist_to_terminals.terminal_id = users.id
+                            group by play_details.play_master_id,play_masters.id
+                            ,play_masters.barcode_number,play_details.play_series_id
+                            ,play_details.row_num,play_details.col_num) as table1
+                            group by barcode order by draw_master_id desc,ticket_taken_time desc) as table2)'
+        );
 
         DB::unprepared('drop VIEW IF EXISTS digit_table;
               CREATE VIEW digit_table AS
