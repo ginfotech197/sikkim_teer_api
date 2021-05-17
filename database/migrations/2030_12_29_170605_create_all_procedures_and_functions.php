@@ -21,6 +21,7 @@ class CreateAllProceduresAndFunctions extends Migration
                             max(draw_time) as draw_time
                             ,max(ticket_taken_time) as ticket_taken_time
                             ,barcode
+                            ,table1.stockist_id
                             ,max(play_master_id) as play_master_id
                             ,max(terminal_id) as terminal_id
                             ,max(draw_master_id) as draw_master_id
@@ -33,6 +34,7 @@ class CreateAllProceduresAndFunctions extends Migration
                             from (select
                             play_masters.barcode_number as barcode
                             ,play_masters.id as play_master_id
+                            ,stockist_to_terminals.stockist_id
                             , max(play_masters.terminal_id) as terminal_id
                             ,max(users.email) as email
                             , play_details.play_series_id
@@ -54,8 +56,8 @@ class CreateAllProceduresAndFunctions extends Migration
                             inner join stockist_to_terminals on stockist_to_terminals.terminal_id = users.id
                             group by play_details.play_master_id,play_masters.id
                             ,play_masters.barcode_number,play_details.play_series_id
-                            ,play_details.row_num,play_details.col_num) as table1
-                            group by barcode order by draw_master_id desc,ticket_taken_time desc) as table2)'
+                            ,play_details.row_num,play_details.col_num,stockist_id) as table1
+                            group by barcode,stockist_id order by draw_master_id desc,ticket_taken_time desc) as table2)'
         );
 
         DB::unprepared('drop VIEW IF EXISTS digit_table;
