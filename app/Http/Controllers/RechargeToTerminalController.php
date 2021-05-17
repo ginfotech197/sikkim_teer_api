@@ -64,7 +64,7 @@ class RechargeToTerminalController extends Controller
     public function getAllBarcodeReportByDate(request $request){
         $requestedData = (object)($request->json()->all());
         $startDate = $requestedData->start_date;
-        return DB::select("select * from getallbarcodereport where date(game_date) = ?",[$startDate]);;
+        return DB::select("select * from getAllBarcodeReport where date(game_date) = ?",[$startDate]);
     }
 
     public function getAllBarcodeReportByDateStockiest(request $request){
@@ -72,7 +72,7 @@ class RechargeToTerminalController extends Controller
         $startDate = $requestedData->start_date;
         $stockiestId = $requestedData->stockiest_id;
 
-        return DB::select("select * from getallbarcodereport where date(game_date) = ? and stockist_id = ?",[$startDate,$stockiestId]);
+        return DB::select("select * from getAllBarcodeReport where date(game_date) = ? and stockist_id = ?",[$startDate,$stockiestId]);
     }
 
 
