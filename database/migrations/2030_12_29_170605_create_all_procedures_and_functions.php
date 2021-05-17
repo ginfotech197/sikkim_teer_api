@@ -22,6 +22,7 @@ class CreateAllProceduresAndFunctions extends Migration
                             ,max(ticket_taken_time) as ticket_taken_time
                             ,barcode
                             ,table1.stockist_id
+                            ,table1.game_date
                             ,max(play_master_id) as play_master_id
                             ,max(terminal_id) as terminal_id
                             ,max(draw_master_id) as draw_master_id
@@ -35,6 +36,7 @@ class CreateAllProceduresAndFunctions extends Migration
                             play_masters.barcode_number as barcode
                             ,play_masters.id as play_master_id
                             ,stockist_to_terminals.stockist_id
+                            ,play_masters.created_at as game_date
                             , max(play_masters.terminal_id) as terminal_id
                             ,max(users.email) as email
                             , play_details.play_series_id
@@ -54,10 +56,10 @@ class CreateAllProceduresAndFunctions extends Migration
                             inner join play_series ON play_series.id = play_details.play_series_id
                             inner join users on users.id = play_masters.terminal_id
                             inner join stockist_to_terminals on stockist_to_terminals.terminal_id = users.id
-                            group by play_details.play_master_id,play_masters.id
+                            group by play_details.play_master_id,play_masters.id,play_masters.created_at
                             ,play_masters.barcode_number,play_details.play_series_id
                             ,play_details.row_num,play_details.col_num,stockist_id) as table1
-                            group by barcode,stockist_id order by draw_master_id desc,ticket_taken_time desc) as table2)'
+                            group by barcode,stockist_id,game_date order by draw_master_id desc,ticket_taken_time desc) as table2)'
         );
 
         DB::unprepared('drop VIEW IF EXISTS digit_table;
