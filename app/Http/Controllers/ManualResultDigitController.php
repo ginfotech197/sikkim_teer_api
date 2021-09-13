@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\ManualResultDigit;
+use App\Models\PlaySeries;
+use App\Models\ResultDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Carbon;
+use App\Models\ResultMaster;
 
 class ManualResultDigitController extends Controller
 {
@@ -53,7 +56,29 @@ class ManualResultDigitController extends Controller
             $manualResultDigit->result = $result;
             $manualResultDigit->game_date = $gameDate;
             $manualResultDigit->save();
+
+            
+            $lastInsertedResultMasterId = ResultMaster::insertGetId([
+                'draw_master_id' => $drawMasterId,
+                'game_id' => 1,
+                'game_date' => Carbon::today(),
+            ]);
+
+            $resultRow = floor($result/10);
+            $resultColumn = $result%10;
+            $payoutObj = PlaySeries::where('id',1)->first();
+            ResultDetails::insert([
+                'result_master_id' => $lastInsertedResultMasterId,
+                'result_row' => $resultRow,
+                'result_col' => $resultColumn,
+                'payout' => $payoutObj->payout,
+                'play_series_id' => 1,
+            ]);           
+
+
             DB::commit();
+
+
         }
 
         catch (Exception $e)
