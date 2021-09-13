@@ -59,51 +59,61 @@ class ResultMasterController extends Controller
         $start_date = $requestedData->start_date;
         $end_date = $requestedData->end_date;
 
-//        $data = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=1,(result_details.result_row*10 + result_details.result_col),0) as fr_value,
-//            if(result_masters.draw_master_id=2,(result_details.result_row*10 + result_details.result_col),0) as sr_value from result_masters
-//            inner join result_details on result_details.result_master_id = result_masters.id');
+        $data = DB::select("select game_date,ifnull(max(fr),'XX')as fr, ifnull(max(sr),'XX') as sr from (select game_date, case when draw_master_id=1 then result end as fr,
+        case when draw_master_id=2 then result end as sr
 
-        $fr_value = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=1,(result_details.result_row*10 + result_details.result_col),0) as fr_value from result_masters
-            inner join result_details on result_details.result_master_id = result_masters.id
-            where result_masters.draw_master_id = 1 and result_masters.game_date>= ? and result_masters.game_date<= ? order by result_masters.game_date desc', [$start_date,$end_date]);
-//        return response()->json(array('success' => 1, 'data'=>$fr_value),200);
+        from (select result_masters.id,result_masters.game_date, result_masters.draw_master_id, draw_masters.draw_name,
+        (result_details.result_row *10) + result_details.result_col as result  from result_masters
+        inner join result_details on result_details.result_master_id = result_masters.id
+        inner join draw_masters on draw_masters.id = result_masters.draw_master_id
+        where result_masters.game_date>=? and result_masters.game_date<=?) as table1)  as table2
+        group by game_date order by game_date desc",[$start_date,$end_date]);
 
-        $sr_value = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=2,(result_details.result_row*10 + result_details.result_col),0) as sr_value from result_masters
-            inner join result_details on result_details.result_master_id = result_masters.id
-            where result_masters.draw_master_id = 2 and result_masters.game_date>= ? and result_masters.game_date<= ? order by result_masters.game_date desc', [$start_date,$end_date]);
-
-//        return response()->json(array('success' => 1, 'data'=>$fr_value, 'data2'=>$sr_value),200);
-
+////        $data = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=1,(result_details.result_row*10 + result_details.result_col),0) as fr_value,
+////            if(result_masters.draw_master_id=2,(result_details.result_row*10 + result_details.result_col),0) as sr_value from result_masters
+////            inner join result_details on result_details.result_master_id = result_masters.id');
+//
+//        $fr_value = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=1,(result_details.result_row*10 + result_details.result_col),0) as fr_value from result_masters
+//            inner join result_details on result_details.result_master_id = result_masters.id
+//            where result_masters.draw_master_id = 1 and result_masters.game_date>= ? and result_masters.game_date<= ? order by result_masters.game_date desc', [$start_date,$end_date]);
+////        return response()->json(array('success' => 1, 'data'=>$fr_value),200);
+//
+//        $sr_value = DB::select('select result_masters.game_date, if(result_masters.draw_master_id=2,(result_details.result_row*10 + result_details.result_col),0) as sr_value from result_masters
+//            inner join result_details on result_details.result_master_id = result_masters.id
+//            where result_masters.draw_master_id = 2 and result_masters.game_date>= ? and result_masters.game_date<= ? order by result_masters.game_date desc', [$start_date,$end_date]);
+//
+////        return response()->json(array('success' => 1, 'data'=>$fr_value, 'data2'=>$sr_value),200);
+//
+////        $finalArray = [];
+////        foreach ($fr_value as $fr_val){
+////            $testArray =(object)[];
+////            foreach ($sr_value as $sr_val){
+////                if($fr_val->game_date === $sr_val->game_date){
+////                    $testArray->game_date = $fr_val->game_date;
+////                    $testArray->fr_value = $fr_val->fr_value | 0;
+////                    $testArray->sr_value = $sr_val->sr_value | 0;
+////                }
+////                array_push($finalArray,$testArray);
+////            }
+////        }
+//
 //        $finalArray = [];
-//        foreach ($fr_value as $fr_val){
+//        if(count($fr_value)<=count($sr_value)){
+//            $count = count($fr_value);
+//        }else{
+//            $count = count($sr_value);
+//        }
+//        for ($i = 0; $i < $count ; $i++){
 //            $testArray =(object)[];
-//            foreach ($sr_value as $sr_val){
-//                if($fr_val->game_date === $sr_val->game_date){
-//                    $testArray->game_date = $fr_val->game_date;
-//                    $testArray->fr_value = $fr_val->fr_value | 0;
-//                    $testArray->sr_value = $sr_val->sr_value | 0;
-//                }
-//                array_push($finalArray,$testArray);
+//            if($fr_value[$i]->game_date === $sr_value[$i]->game_date) {
+//                $testArray->game_date = $fr_value[$i]->game_date;
+//                $testArray->fr_value = $fr_value[$i]->fr_value | 0;
+//                $testArray->sr_value = $sr_value[$i]->sr_value | 0;
 //            }
+//            array_push($finalArray,$testArray);
 //        }
 
-        $finalArray = [];
-        if(count($fr_value)<=count($sr_value)){
-            $count = count($fr_value);
-        }else{
-            $count = count($sr_value);
-        }
-        for ($i = 0; $i < $count ; $i++){
-            $testArray =(object)[];
-            if($fr_value[$i]->game_date === $sr_value[$i]->game_date) {
-                $testArray->game_date = $fr_value[$i]->game_date;
-                $testArray->fr_value = $fr_value[$i]->fr_value | 0;
-                $testArray->sr_value = $sr_value[$i]->sr_value | 0;
-            }
-            array_push($finalArray,$testArray);
-        }
-
-        return response()->json(array('success' => 1, 'data'=>$finalArray),200);
+        return response()->json(array('success' => 1, 'data'=>$data),200);
     }
 
 
